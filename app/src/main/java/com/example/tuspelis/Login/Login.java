@@ -1,5 +1,6 @@
 package com.example.tuspelis.Login;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,6 +12,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.tuspelis.MainActivity;
 import com.example.tuspelis.R;
 
 public class Login extends AppCompatActivity {
@@ -46,6 +48,9 @@ public class Login extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(Login.this, "Pulsaste el boton de registrarse", Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(Login.this, MainActivity.class);
+                startActivity(i);
+                finish();
             }
         });
     }
@@ -55,6 +60,9 @@ public class Login extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(Login.this, "Pulsaste el boton de entrar", Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(Login.this, MainActivity.class);
+                startActivity(i);
+                finish();
             }
         });
     }
@@ -64,6 +72,9 @@ public class Login extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(Login.this, "Pulsaste el boton de invitado", Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(Login.this, MainActivity.class);
+                startActivity(i);
+                finish();
             }
         });
     }
