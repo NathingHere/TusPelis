@@ -15,9 +15,9 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.tuspelis.Peliculas.PeliculasMain;
+import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity extends AppCompatActivity {
-
     private ImageButton peliculas, series, watchLater, fav, buscador, votaciones;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
