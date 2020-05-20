@@ -1,4 +1,4 @@
-package com.example.tuspelis.Peliculas;
+package com.example.tuspelis.Series;
 
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -10,11 +10,12 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.tuspelis.Adapters.AdapterTabLayoutPeliculas;
+
 import com.example.tuspelis.Peliculas.Fragments.FragmentGeneralPeliculas;
 import com.example.tuspelis.R;
 import com.google.android.material.tabs.TabLayout;
 
-public class PeliculasMain extends AppCompatActivity {
+public class SeriesMain extends AppCompatActivity {
     private TabLayout tabLayout;
     private int[]tabIcons={R.drawable.iconofragmentestrenos, R.drawable.iconofragmentlanzamiento,R.drawable.iconofragmentgeneros,R.drawable.iconofragmenttrending};
     ViewPager viewPager;
@@ -22,7 +23,7 @@ public class PeliculasMain extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.peliculas_main);
-        setTitle("Peliculas");
+        setTitle("Series");
         tabLayout = findViewById(R.id.tablayout);
         viewPager = findViewById(R.id.viewpager);
         loadViewpager(viewPager);
