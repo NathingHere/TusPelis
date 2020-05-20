@@ -21,6 +21,7 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".Peliculas.PeliculasMain" />
         <activity android:name=".Series.SeriesMain" />
+        <activity android:name=".Buscador.BuscadorMain" />
 
         <meta-data
             android:name="preloaded_fonts"

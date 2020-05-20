@@ -14,6 +14,7 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.example.tuspelis.Buscador.BuscadorMain;
 import com.example.tuspelis.Peliculas.PeliculasMain;
 import com.example.tuspelis.Series.SeriesMain;
 import com.google.android.material.tabs.TabLayout;
@@ -94,7 +95,8 @@ public class MainActivity extends AppCompatActivity {
         buscador.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Buscador", Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(MainActivity.this, BuscadorMain.class);
+                startActivity(i);
             }
         });
     }

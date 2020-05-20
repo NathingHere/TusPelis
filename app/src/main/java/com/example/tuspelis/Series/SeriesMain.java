@@ -22,7 +22,7 @@ public class SeriesMain extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.peliculas_main);
+        setContentView(R.layout.fragments_main);
         setTitle("Series");
         tabLayout = findViewById(R.id.tablayout);
         viewPager = findViewById(R.id.viewpager);

@@ -20,7 +20,7 @@ public class FragmentGeneralPeliculas extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragmentpeliculas,container,false);
+        view = inflater.inflate(R.layout.fragments,container,false);
         txtPrueba = view.findViewById(R.id.txtPrueba);
 
         if(getArguments() != null){

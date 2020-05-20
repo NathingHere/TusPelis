@@ -13,7 +13,10 @@
         <item name="colorControlActivated">@color/botones</item>
         <item name="android:textColorHighlight">@color/botones</item>
         <item name="android:textColorHint">@color/botones</item>
-
     </style>
-
+    <style name="BuscadorEditText" parent="Theme.AppCompat.Light">
+        <item name="colorControlNormal">#FFFFFF</item>
+        <item name="colorControlActivated">#FFFFFF</item>
+        <item name="android:textColorHighlight">#FFFFFF</item>
+    </style>
 </resources>
