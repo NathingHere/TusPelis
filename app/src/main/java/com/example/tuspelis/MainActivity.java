@@ -15,8 +15,11 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.tuspelis.Buscador.BuscadorMain;
+import com.example.tuspelis.Favoritos.FavoritosMain;
 import com.example.tuspelis.Peliculas.PeliculasMain;
 import com.example.tuspelis.Series.SeriesMain;
+import com.example.tuspelis.Votaciones.VotosMain;
+import com.example.tuspelis.WatchLater.WatchLaterMain;
 import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity extends AppCompatActivity {
@@ -68,7 +71,8 @@ public class MainActivity extends AppCompatActivity {
         watchLater.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Watch Later", Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(MainActivity.this, WatchLaterMain.class);
+                startActivity(i);
             }
         });
     }
@@ -77,7 +81,8 @@ public class MainActivity extends AppCompatActivity {
         fav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Favoritos", Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(MainActivity.this, FavoritosMain.class);
+                startActivity(i);
             }
         });
     }
@@ -86,7 +91,8 @@ public class MainActivity extends AppCompatActivity {
         votaciones.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Votos", Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(MainActivity.this, VotosMain.class);
+                startActivity(i);
             }
         });
     }
