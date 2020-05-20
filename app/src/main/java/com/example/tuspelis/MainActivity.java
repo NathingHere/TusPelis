@@ -3,6 +3,7 @@ package com.example.tuspelis;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -12,6 +13,8 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+
+import com.example.tuspelis.Peliculas.PeliculasMain;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -43,7 +46,8 @@ public class MainActivity extends AppCompatActivity {
         peliculas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Peliculas", Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(MainActivity.this, PeliculasMain.class);
+                startActivity(i);
             }
         });
     }
