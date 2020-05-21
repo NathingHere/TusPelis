@@ -19,7 +19,6 @@ import com.example.tuspelis.Peliculas.Models.ListadoPeliculas;
 import com.example.tuspelis.Peliculas.Models.Pelicula;
 import com.example.tuspelis.R;
 import com.example.tuspelis.WebService.MyClient;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +31,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class FragmentEstrenos extends Fragment {
+public class FragmentPopular extends Fragment {
     private View v;
     private TextView txtPrueba;
     private AdapterListado adapter;
@@ -46,7 +45,7 @@ public class FragmentEstrenos extends Fragment {
         txtPrueba = v.findViewById(R.id.txtPrueba);
         listadoPeliculas = new ArrayList<>();
         recyclerView = v.findViewById(R.id.recyclerview);
-        txtPrueba.setText("Estrenos");
+        txtPrueba.setText("Popular");
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         adapter = new AdapterListado(listadoPeliculas, getActivity());
         recyclerView.setLayoutManager(layoutManager);
@@ -65,7 +64,7 @@ public class FragmentEstrenos extends Fragment {
                 .build();
 
         MyClient client = retrofit.create(MyClient.class);
-        Call<ListadoPeliculas> call = client.getUpcoming(MainActivity.KEY);
+        Call<ListadoPeliculas> call = client.getPopular(MainActivity.KEY);
         call.enqueue(new Callback<ListadoPeliculas>() {
             @Override
             public void onResponse(Call<ListadoPeliculas> call, Response<ListadoPeliculas> response) {

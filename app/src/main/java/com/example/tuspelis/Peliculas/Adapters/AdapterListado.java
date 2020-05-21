@@ -1,5 +1,6 @@
 package com.example.tuspelis.Peliculas.Adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -46,14 +47,14 @@ public class AdapterListado extends RecyclerView.Adapter<AdapterListado.Pelicula
 
         Picasso.get().load("https://image.tmdb.org/t/p/original"+pelicula.getPosterPath()).into(holder.portada);
 
-        /*holder.layout.setOnClickListener(new View.OnClickListener() {
+        holder.layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, PeliculaDetalle.class);
-                intent.putExtra("data", pelicula);
+                intent.putExtra("data", peliculas.get(position));
                 context.startActivity(intent);
             }
-        });*/
+        });
     }
 
     @Override
@@ -68,13 +69,13 @@ public class AdapterListado extends RecyclerView.Adapter<AdapterListado.Pelicula
 
     static class PeliculaHolder extends RecyclerView.ViewHolder {
 
-        CardView cardInfo;
+        LinearLayout layout;
         TextView titulo;
         ImageView portada;
 
         public PeliculaHolder(@NonNull View v) {
             super(v);
-            cardInfo = v.findViewById(R.id.cardInfo);
+            layout = v.findViewById(R.id.layout);
             titulo = v.findViewById(R.id.txtTituloItem);
             portada = v.findViewById(R.id.ivPortadaItem);
         }

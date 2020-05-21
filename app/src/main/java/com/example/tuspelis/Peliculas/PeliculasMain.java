@@ -12,6 +12,9 @@ import androidx.viewpager.widget.ViewPager;
 import com.example.tuspelis.Adapters.AdapterTabLayoutPeliculas;
 import com.example.tuspelis.Peliculas.Fragments.FragmentGeneralPeliculas;
 import com.example.tuspelis.Peliculas.Fragments.FragmentEstrenos;
+import com.example.tuspelis.Peliculas.Fragments.FragmentNowPlaying;
+import com.example.tuspelis.Peliculas.Fragments.FragmentPopular;
+import com.example.tuspelis.Peliculas.Fragments.FragmentTop;
 import com.example.tuspelis.R;
 import com.google.android.material.tabs.TabLayout;
 
@@ -53,9 +56,9 @@ public class PeliculasMain extends AppCompatActivity {
     private void loadViewpager(ViewPager viewPager){
         AdapterTabLayoutPeliculas adapter = new AdapterTabLayoutPeliculas(getSupportFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         adapter.addFragment(new FragmentEstrenos());
-        adapter.addFragment(newInstance("Lanzamiento"));
-        adapter.addFragment(newInstance("Géneros"));
-        adapter.addFragment(newInstance("Trending"));
+        adapter.addFragment(new FragmentNowPlaying());
+        adapter.addFragment(new FragmentPopular());
+        adapter.addFragment(new FragmentTop());
         viewPager.setAdapter(adapter);
     }
 
