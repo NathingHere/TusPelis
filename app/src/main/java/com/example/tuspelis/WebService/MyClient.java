@@ -1,6 +1,7 @@
 package com.example.tuspelis.WebService;
 
 import com.example.tuspelis.Peliculas.Models.ListadoPeliculas;
+import com.example.tuspelis.Series.Models.ListadoSeries;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -13,6 +14,9 @@ public interface MyClient {
 
     @GET("movie/upcoming")
     Call<ListadoPeliculas> getUpcoming(@Query("api_key") String key);
+
+    @GET("tv/popular")
+    Call<ListadoSeries> getPopularSeries(@Query("api-key") String key);
 
 
 
