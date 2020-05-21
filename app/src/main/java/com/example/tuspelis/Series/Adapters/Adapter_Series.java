@@ -20,6 +20,7 @@ public class Adapter_Series extends RecyclerView.Adapter<Adapter_Series.SerieHol
 
     private List<Serie> series;
     private Context context;
+    private String hola2;
 
     public Adapter_Series(List<Serie> series, Context context) {
         this.series = series;
