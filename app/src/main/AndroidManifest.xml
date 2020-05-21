@@ -25,6 +25,7 @@
         <activity android:name=".Votaciones.VotosMain" />
         <activity android:name=".WatchLater.WatchLaterMain" />
         <activity android:name=".Favoritos.FavoritosMain" />
+        <activity android:name=".Peliculas.PeliculaDetalle" />
 
         <meta-data
             android:name="preloaded_fonts"

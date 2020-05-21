@@ -24,6 +24,7 @@ import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity extends AppCompatActivity {
     private ImageButton peliculas, series, watchLater, fav, buscador, votaciones;
+    public final static String KEY = "b1911f7e46956d96b5b5047a6b686ecb";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

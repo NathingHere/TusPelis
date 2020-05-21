@@ -11,6 +11,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.example.tuspelis.Adapters.AdapterTabLayoutPeliculas;
 import com.example.tuspelis.Peliculas.Fragments.FragmentGeneralPeliculas;
+import com.example.tuspelis.Peliculas.Fragments.FragmentEstrenos;
 import com.example.tuspelis.R;
 import com.google.android.material.tabs.TabLayout;
 
@@ -18,6 +19,7 @@ public class PeliculasMain extends AppCompatActivity {
     private TabLayout tabLayout;
     private int[]tabIcons={R.drawable.iconofragmentestrenos, R.drawable.iconofragmentlanzamiento,R.drawable.iconofragmentgeneros,R.drawable.iconofragmenttrending};
     ViewPager viewPager;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,7 +52,7 @@ public class PeliculasMain extends AppCompatActivity {
 
     private void loadViewpager(ViewPager viewPager){
         AdapterTabLayoutPeliculas adapter = new AdapterTabLayoutPeliculas(getSupportFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
-        adapter.addFragment(newInstance("Estrenos"));
+        adapter.addFragment(new FragmentEstrenos());
         adapter.addFragment(newInstance("Lanzamiento"));
         adapter.addFragment(newInstance("Géneros"));
         adapter.addFragment(newInstance("Trending"));
