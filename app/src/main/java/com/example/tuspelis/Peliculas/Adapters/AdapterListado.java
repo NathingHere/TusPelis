@@ -33,7 +33,7 @@ public class AdapterListado extends RecyclerView.Adapter<AdapterListado.Pelicula
     @NonNull
     @Override
     public PeliculaHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout."ITEM LAYOUT AQUI", parent, false);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout."ITEM LAYOUT AUI", parent, false);
         PeliculaHolder holder = new PeliculaHolder(itemView);
         return holder;
     }
