@@ -19,5 +19,4 @@ public interface MyClient {
     Call<ListadoSeries> getPopularSeries(@Query("api-key") String key);
 
 
-
 }

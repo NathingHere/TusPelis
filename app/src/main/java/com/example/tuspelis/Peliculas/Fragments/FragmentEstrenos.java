@@ -1,5 +1,6 @@
 package com.example.tuspelis.Peliculas.Fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tuspelis.MainActivity;
@@ -19,6 +21,7 @@ import com.example.tuspelis.R;
 import com.example.tuspelis.WebService.MyClient;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import okhttp3.OkHttpClient;
@@ -31,6 +34,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class FragmentEstrenos extends Fragment {
     private View v;
+    private Context context;
     private TextView txtPrueba;
     private AdapterListado adapter;
     private RecyclerView recyclerView;
@@ -41,8 +45,14 @@ public class FragmentEstrenos extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.fragments,container,false);
         txtPrueba = v.findViewById(R.id.txtPrueba);
+        listadoPeliculas = new ArrayList<>();
         recyclerView = v.findViewById(R.id.recyclerview);
         txtPrueba.setText("Estrenos");
+        LinearLayoutManager layoutManager = new LinearLayoutManager(context);
+        adapter = new AdapterListado(listadoPeliculas, context);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(adapter);
+        sendRequest();
         return v;
     }
 
@@ -61,7 +71,7 @@ public class FragmentEstrenos extends Fragment {
             @Override
             public void onResponse(Call<ListadoPeliculas> call, Response<ListadoPeliculas> response) {
                  listadoPeliculas = response.body().getResults();
-                adapter.setLista(listadoPeliculas);
+                 adapter.setLista(listadoPeliculas);
             }
 
             @Override

@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tuspelis.Peliculas.Models.Pelicula;
@@ -41,6 +42,9 @@ public class AdapterListado extends RecyclerView.Adapter<AdapterListado.Pelicula
     @Override
     public void onBindViewHolder(@NonNull PeliculaHolder holder, int position) {
         Pelicula pelicula = peliculas.get(position);
+        holder.titulo.setText(pelicula.getTitle());
+
+        Picasso.get().load("https://image.tmdb.org/t/p/original"+pelicula.getPosterPath()).into(holder.portada);
 
         /*holder.layout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,11 +68,15 @@ public class AdapterListado extends RecyclerView.Adapter<AdapterListado.Pelicula
 
     static class PeliculaHolder extends RecyclerView.ViewHolder {
 
-
+        CardView cardInfo;
+        TextView titulo;
+        ImageView portada;
 
         public PeliculaHolder(@NonNull View v) {
             super(v);
-
+            cardInfo = v.findViewById(R.id.cardInfo);
+            titulo = v.findViewById(R.id.txtTituloItem);
+            portada = v.findViewById(R.id.ivPortadaItem);
         }
     }
 
