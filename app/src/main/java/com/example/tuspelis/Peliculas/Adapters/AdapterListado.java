@@ -33,7 +33,7 @@ public class AdapterListado extends RecyclerView.Adapter<AdapterListado.Pelicula
     @NonNull
     @Override
     public PeliculaHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout."ITEM LAYOUT AQI", parent, false);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.main_item, parent, false);
         PeliculaHolder holder = new PeliculaHolder(itemView);
         return holder;
     }
@@ -42,14 +42,14 @@ public class AdapterListado extends RecyclerView.Adapter<AdapterListado.Pelicula
     public void onBindViewHolder(@NonNull PeliculaHolder holder, int position) {
         Pelicula pelicula = peliculas.get(position);
 
-        holder.layout.setOnClickListener(new View.OnClickListener() {
+        /*holder.layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, PeliculaDetalle.class);
                 intent.putExtra("data", pelicula);
                 context.startActivity(intent);
             }
-        });
+        });*/
     }
 
     @Override
