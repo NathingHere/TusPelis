@@ -1,5 +1,5 @@
 package com.example.tuspelis;
 
 public class prueba_pepelu {
-    String hola;
+    String hola2;
 }
