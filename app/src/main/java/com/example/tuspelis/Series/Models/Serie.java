@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Serie implements Serializable {
 
-    private int hola;
+    private int hol;
 
     @SerializedName("vote_count")
     private int voteCount;

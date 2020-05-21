@@ -15,7 +15,7 @@ public interface MyClient {
     @GET("movie/upcoming")
     Call<ListadoPeliculas> getUpcoming(@Query("api_key") String key);
 
-    @GET("tv/popula")
+    @GET("tv/popular")
     Call<ListadoSeries> getPopularSeries(@Query("api-key") String key);
 
 
