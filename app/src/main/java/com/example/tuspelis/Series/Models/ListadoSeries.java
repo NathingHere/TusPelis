@@ -9,7 +9,7 @@ public class ListadoSeries {
         this.results = results;
     }
 
-    public ArrayList<Serie> getResults1(){
+    public ArrayList<Serie> getResults(){
         return results;
     }
 
