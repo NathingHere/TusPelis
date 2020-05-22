@@ -12,7 +12,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.tuspelis.Peliculas.Models.Pelicula;
 import com.example.tuspelis.R;
 import com.example.tuspelis.Series.Models.Serie;
 import com.example.tuspelis.Series.SerieDetalle;
@@ -44,7 +43,7 @@ public class Adapter_Series extends RecyclerView.Adapter<Adapter_Series.SerieHol
         Serie serie = series.get(position);
         holder.titulo.setText(serie.getName());
 
-        Picasso.get().load("https://image.tmdb.org/t/p/original"+serie.getPoster_path()).into(holder.portada);
+
 
         holder.layout.setOnClickListener(new View.OnClickListener() {
             @Override
