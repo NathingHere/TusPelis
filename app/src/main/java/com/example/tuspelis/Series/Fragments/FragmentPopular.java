@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tuspelis.MainActivity;
+import com.example.tuspelis.Peliculas.Adapters.AdapterListado;
 import com.example.tuspelis.R;
 import com.example.tuspelis.Series.Adapters.Adapter_Series;
 import com.example.tuspelis.Series.Models.ListadoSeries;
@@ -35,7 +36,7 @@ public class FragmentPopular extends Fragment {
     private View view;
     private TextView txtPrueba;
     private Adapter_Series adapter;
-    private RecyclerView recyclerView;
+    private RecyclerView recyclerview;
     private List<Serie> listadoseries;
 
     @Nullable
@@ -47,8 +48,8 @@ public class FragmentPopular extends Fragment {
         txtPrueba.setText("Popular");
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         adapter = new Adapter_Series(listadoseries, getActivity());
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(adapter);
+        recyclerview.setLayoutManager(layoutManager);
+        recyclerview.setAdapter(adapter);
         sendPeticion();
         return view;
     }
