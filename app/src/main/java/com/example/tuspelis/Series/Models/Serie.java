@@ -1,11 +1,14 @@
 package com.example.tuspelis.Series.Models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 import java.util.List;
 
-public class Serie implements Serializable {
+public class Serie implements Parcelable {
 
 
     @SerializedName("vote_count")
@@ -56,6 +59,34 @@ public class Serie implements Serializable {
         this.status = status;
         this.poster_path = poster_path;
     }
+
+    protected Serie(Parcel in) {
+        voteCount = in.readInt();
+        id = in.readInt();
+        voteAverage = in.readDouble();
+        name = in.readString();
+        popularity = in.readDouble();
+        posterPath = in.readString();
+        originalLanguage = in.readString();
+        adult = in.readByte() != 0;
+        overview = in.readString();
+        number_of_seasons = in.readInt();
+        number_of_episodes = in.readInt();
+        status = in.readString();
+        poster_path = in.readString();
+    }
+
+    public static final Creator<Serie> CREATOR = new Creator<Serie>() {
+        @Override
+        public Serie createFromParcel(Parcel in) {
+            return new Serie(in);
+        }
+
+        @Override
+        public Serie[] newArray(int size) {
+            return new Serie[size];
+        }
+    };
 
     public int getVoteCount() {
         return voteCount;
@@ -170,4 +201,25 @@ public class Serie implements Serializable {
     }
 
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(voteCount);
+        dest.writeInt(id);
+        dest.writeDouble(voteAverage);
+        dest.writeString(name);
+        dest.writeDouble(popularity);
+        dest.writeString(posterPath);
+        dest.writeString(originalLanguage);
+        dest.writeByte((byte) (adult ? 1 : 0));
+        dest.writeString(overview);
+        dest.writeInt(number_of_seasons);
+        dest.writeInt(number_of_episodes);
+        dest.writeString(status);
+        dest.writeString(poster_path);
+    }
 }
