@@ -45,6 +45,7 @@ public class FragmentPopular extends Fragment {
         view = inflater.inflate(R.layout.fragments, container, false);
         txtPrueba = view.findViewById(R.id.txtPrueba);
         listadoseries = new ArrayList<>();
+        recyclerview = view.findViewById(R.id.recyclerview);
         txtPrueba.setText("Popular");
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         adapter = new Adapter_Series(listadoseries, getActivity());
