@@ -68,7 +68,7 @@ public class FragmentPopular extends Fragment {
         call.enqueue(new Callback<ListadoSeries>() {
             @Override
             public void onResponse(Call<ListadoSeries> call, Response<ListadoSeries> response) {
-                listadoseries = response.body().getResults();
+                listadoseries = response.body().getResults1();
                 adapter.setLista(listadoseries);
             }
 
