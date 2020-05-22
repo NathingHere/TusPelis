@@ -1,7 +1,5 @@
 package com.example.tuspelis.Series.Models;
 
-import android.content.Context;
-
 import java.util.ArrayList;
 
 public class ListadoSeries {
