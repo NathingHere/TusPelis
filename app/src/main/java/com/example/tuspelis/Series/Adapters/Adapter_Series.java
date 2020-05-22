@@ -43,7 +43,7 @@ public class Adapter_Series extends RecyclerView.Adapter<Adapter_Series.SerieHol
         Serie serie = series.get(position);
         holder.titulo.setText(serie.getName());
 
-
+        Picasso.get().load("https://image.tmdb.org/t/p/original"+serie.getPoster_path()).into(holder.portada);
 
         holder.layout.setOnClickListener(new View.OnClickListener() {
             @Override
