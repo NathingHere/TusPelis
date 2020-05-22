@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
@@ -13,6 +14,7 @@ import com.example.tuspelis.Adapters.AdapterTabLayoutPeliculas;
 
 import com.example.tuspelis.Peliculas.Fragments.FragmentGeneralPeliculas;
 import com.example.tuspelis.R;
+import com.example.tuspelis.Series.Fragments.FragmentPopular;
 import com.google.android.material.tabs.TabLayout;
 
 public class SeriesMain extends AppCompatActivity {
@@ -54,7 +56,7 @@ public class SeriesMain extends AppCompatActivity {
         adapter.addFragment(newInstance("Estrenos"));
         adapter.addFragment(newInstance("Lanzamiento"));
         adapter.addFragment(newInstance("Géneros"));
-        adapter.addFragment(newInstance("Trending"));
+        adapter.addFragment(new FragmentPopular());
         viewPager.setAdapter(adapter);
     }
 
