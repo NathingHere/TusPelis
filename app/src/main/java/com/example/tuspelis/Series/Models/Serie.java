@@ -35,8 +35,13 @@ public class Serie implements Serializable {
     private int number_of_episodes;
     @SerializedName("status")
     private String status;
+    @SerializedName("poster_path")
+    private String poster_path;
 
-    public Serie(int voteCount, int id, double voteAverage, String name, double popularity, String posterPath, String originalLanguage, List<Integer> genreId, boolean adult, String overview, int number_of_seasons, int number_of_episodes, String status) {
+
+
+
+    public Serie(int voteCount, int id, double voteAverage, String name, double popularity, String posterPath, String originalLanguage, List<Integer> genreId, boolean adult, String overview, int number_of_seasons, int number_of_episodes, String status, String poster_path) {
         this.voteCount = voteCount;
         this.id = id;
         this.voteAverage = voteAverage;
@@ -50,6 +55,7 @@ public class Serie implements Serializable {
         this.number_of_seasons = number_of_seasons;
         this.number_of_episodes = number_of_episodes;
         this.status = status;
+        this.poster_path = poster_path;
     }
 
     public int getVoteCount() {
@@ -154,6 +160,14 @@ public class Serie implements Serializable {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getPoster_path() {
+        return poster_path;
+    }
+
+    public void setPoster_path(String poster_path) {
+        this.poster_path = poster_path;
     }
 
 
