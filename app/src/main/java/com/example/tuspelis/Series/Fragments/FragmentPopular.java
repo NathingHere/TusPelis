@@ -49,7 +49,7 @@ public class FragmentPopular extends Fragment {
         adapter = new Adapter_Series(listadoseries, getActivity());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
-
+        sendPeticion();
         return view;
     }
 
