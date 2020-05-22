@@ -42,7 +42,7 @@ public interface MyClient {
     Call<SeriePlus> getSerieDetals(@Path("tv_id") int tv_id, @Query("api_key") String key);
 
     @GET("tv/popular")
-    Call<ListadoSeries> getPopularSeries(@Query("api-key") String key);
+    Call<ListadoSeries> getPopularSeries(@Query("api_key") String key);
 
 
 }
