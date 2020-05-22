@@ -53,7 +53,7 @@ public class FragmentPopular extends Fragment {
         return view;
     }
 
-    private void sentPeticion(){
+    private void sendPeticion(){
         HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient.Builder httpClientBuilder = new OkHttpClient.Builder().addInterceptor(loggingInterceptor);
         Retrofit retrofit = new Retrofit.Builder()

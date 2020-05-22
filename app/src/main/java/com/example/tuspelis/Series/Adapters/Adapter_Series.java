@@ -24,6 +24,7 @@ public class Adapter_Series extends RecyclerView.Adapter<Adapter_Series.SerieHol
 
     private List<Serie> series;
     private Context context;
+    private String h;
 
 
     public Adapter_Series(List<Serie> series, Context context) {
