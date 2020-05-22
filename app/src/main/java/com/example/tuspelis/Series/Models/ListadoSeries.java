@@ -6,7 +6,6 @@ import java.util.ArrayList;
 
 public class ListadoSeries {
     private ArrayList<Serie> results;
-    private Context context;
 
     public ListadoSeries(ArrayList<Serie> results) {
         this.results = results;
