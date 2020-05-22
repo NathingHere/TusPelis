@@ -1,7 +1,9 @@
 package com.example.tuspelis.WebService;
 
+import com.example.tuspelis.Peliculas.Models.ListadoGenerosPeliculas;
 import com.example.tuspelis.Peliculas.Models.ListadoPeliculas;
 import com.example.tuspelis.Peliculas.Models.ListadoTrailerPelicula;
+import com.example.tuspelis.Peliculas.Models.PeliculaExtended;
 import com.example.tuspelis.Series.Models.ListadoSeries;
 
 import retrofit2.Call;
@@ -13,6 +15,9 @@ import retrofit2.http.Query;
 public interface MyClient {
 
     public static final String BASE_URL = "https://api.themoviedb.org/3/";
+
+    @GET("movie/{movie_id}")
+    Call<PeliculaExtended> getMovieDetails(@Path("movie_id") int movieId, @Query("api_key") String key);
 
     @GET("movie/upcoming")
     Call<ListadoPeliculas> getUpcoming(@Query("api_key") String key);
@@ -28,6 +33,9 @@ public interface MyClient {
 
     @GET("movie/{id}/videos")
     Call<ListadoTrailerPelicula> getTrailers(@Path("id") int movieId, @Query("api_key") String key);
+
+    @GET("genre/movie/list")
+    Call<ListadoGenerosPeliculas> getGenerosPeliculas(@Query("api_key") String key);
 
 
     @GET("tv/popular")

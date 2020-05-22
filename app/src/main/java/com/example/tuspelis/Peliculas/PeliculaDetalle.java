@@ -14,6 +14,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.tuspelis.MainActivity;
+import com.example.tuspelis.Peliculas.Models.GenerosPeliculas;
+import com.example.tuspelis.Peliculas.Models.ListadoGenerosPeliculas;
 import com.example.tuspelis.Peliculas.Models.ListadoPeliculas;
 import com.example.tuspelis.Peliculas.Models.ListadoTrailerPelicula;
 import com.example.tuspelis.Peliculas.Models.Pelicula;
@@ -39,9 +41,11 @@ public class PeliculaDetalle extends AppCompatActivity {
 
     Context context;
 
+    String genero;
     ImageView portada, fondo;
-    TextView titulo, fechaSalida, descripcion, valoraciones;
+    TextView titulo, fechaSalida, descripcion, valoraciones, generoPelicula;
     FloatingActionButton trailer;
+    List<GenerosPeliculas> generosPeliculas;
 
     String trailerKey;
 
@@ -73,8 +77,15 @@ public class PeliculaDetalle extends AppCompatActivity {
             }
         });
 
+        //request();
+
+        generoPelicula = findViewById(R.id.txtDetalleGenero);
+        generoPelicula.setText(genero);
+
         Picasso.get().load("https://image.tmdb.org/t/p/original"+pelicula.getPosterPath()).into(portada);
         Picasso.get().load("https://image.tmdb.org/t/p/original"+pelicula.getBackdropPath()).into(fondo);
+
+
     }
 
     private void requestTrailer() {
@@ -98,6 +109,36 @@ public class PeliculaDetalle extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<ListadoTrailerPelicula> call, Throwable t) {
+
+            }
+        });
+    }
+
+    public void request() {
+        HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY);
+        OkHttpClient.Builder httpClientBuilder = new OkHttpClient.Builder().addInterceptor(loggingInterceptor);
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(MyClient.BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(httpClientBuilder.build())
+                .build();
+
+        MyClient client = retrofit.create(MyClient.class);
+        Call<ListadoGenerosPeliculas> call = client.getGenerosPeliculas(MainActivity.KEY);
+        call.enqueue(new Callback<ListadoGenerosPeliculas>() {
+            @Override
+            public void onResponse(Call<ListadoGenerosPeliculas> call, Response<ListadoGenerosPeliculas> response) {
+                generosPeliculas = response.body().getGenreResults();
+                for(int i=0; i<generosPeliculas.size(); i++) {
+                    if (pelicula.getGenreId().get(0) == generosPeliculas.get(i).getId()) { //coger lista de id de la peliculadetalle
+                        genero = generosPeliculas.get(i).getName();
+                        break;
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ListadoGenerosPeliculas> call, Throwable t) {
 
             }
         });
