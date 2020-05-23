@@ -3,40 +3,29 @@ package com.example.tuspelis.Series.Models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.google.gson.annotations.SerializedName;
+import java.util.ArrayList;
 
-public class Results implements Parcelable {
+public class Series implements Parcelable {
 
-    @SerializedName("original_name")
     private String original_name;
-    @SerializedName("name")
+    private ArrayList<Integer> genre_ids;
     private String name;
-    @SerializedName("popularity")
     private int popularity;
-    @SerializedName("vote_count")
+    private ArrayList<String> origin_country;
     private int vote_count;
-    @SerializedName("first_air_date")
     private String first_air_date;
-    @SerializedName("backdrop_path")
     private String backdrop_path;
-    @SerializedName("original_language")
     private String original_language;
-    @SerializedName("id")
     private int id;
-    @SerializedName("vote_average")
     private int vote_average;
-    @SerializedName("overview")
     private String overview;
-    @SerializedName("poster_path")
     private String poster_path;
 
-    private Genre_id genre_id;
-    private Origin_country origin_country;
-
-    protected Results(Parcel in) {
+    protected Series(Parcel in) {
         original_name = in.readString();
         name = in.readString();
         popularity = in.readInt();
+        origin_country = in.createStringArrayList();
         vote_count = in.readInt();
         first_air_date = in.readString();
         backdrop_path = in.readString();
@@ -47,28 +36,12 @@ public class Results implements Parcelable {
         poster_path = in.readString();
     }
 
-    public static final Creator<Results> CREATOR = new Creator<Results>() {
-        @Override
-        public Results createFromParcel(Parcel in) {
-            return new Results(in);
-        }
-
-        @Override
-        public Results[] newArray(int size) {
-            return new Results[size];
-        }
-    };
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(original_name);
         dest.writeString(name);
         dest.writeInt(popularity);
+        dest.writeStringList(origin_country);
         dest.writeInt(vote_count);
         dest.writeString(first_air_date);
         dest.writeString(backdrop_path);
@@ -79,12 +52,37 @@ public class Results implements Parcelable {
         dest.writeString(poster_path);
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<Series> CREATOR = new Creator<Series>() {
+        @Override
+        public Series createFromParcel(Parcel in) {
+            return new Series(in);
+        }
+
+        @Override
+        public Series[] newArray(int size) {
+            return new Series[size];
+        }
+    };
+
     public String getOriginal_name() {
         return original_name;
     }
 
     public void setOriginal_name(String original_name) {
         this.original_name = original_name;
+    }
+
+    public ArrayList<Integer> getGenre_ids() {
+        return genre_ids;
+    }
+
+    public void setGenre_ids(ArrayList<Integer> genre_ids) {
+        this.genre_ids = genre_ids;
     }
 
     public String getName() {
@@ -101,6 +99,14 @@ public class Results implements Parcelable {
 
     public void setPopularity(int popularity) {
         this.popularity = popularity;
+    }
+
+    public ArrayList<String> getOrigin_country() {
+        return origin_country;
+    }
+
+    public void setOrigin_country(ArrayList<String> origin_country) {
+        this.origin_country = origin_country;
     }
 
     public int getVote_count() {
@@ -165,21 +171,5 @@ public class Results implements Parcelable {
 
     public void setPoster_path(String poster_path) {
         this.poster_path = poster_path;
-    }
-
-    public Genre_id getGenre_id() {
-        return genre_id;
-    }
-
-    public void setGenre_id(Genre_id genre_id) {
-        this.genre_id = genre_id;
-    }
-
-    public Origin_country getOrigin_country() {
-        return origin_country;
-    }
-
-    public void setOrigin_country(Origin_country origin_country) {
-        this.origin_country = origin_country;
     }
 }

@@ -4,8 +4,7 @@ import com.example.tuspelis.Peliculas.Models.ListadoGenerosPeliculas;
 import com.example.tuspelis.Peliculas.Models.ListadoPeliculas;
 import com.example.tuspelis.Peliculas.Models.ListadoTrailerPelicula;
 import com.example.tuspelis.Peliculas.Models.PeliculaExtended;
-import com.example.tuspelis.Series.Models.Datos_serie;
-import com.example.tuspelis.Series.Models.SeriePlus;
+import com.example.tuspelis.Series.Models.DatosSerie;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -37,11 +36,11 @@ public interface MyClient {
     @GET("genre/movie/list")
     Call<ListadoGenerosPeliculas> getGenerosPeliculas(@Query("api_key") String key);
 
-    @GET("tv/{tv_id}")
-    Call<SeriePlus> getSerieDetals(@Path("tv_id") int tv_id, @Query("api_key") String key);
+    //@GET("tv/{tv_id}")
+    //Call<SeriePlus> getSerieDetals(@Path("tv_id") int tv_id, @Query("api_key") String key);
 
     @GET("tv/popular")
-    Call<Datos_serie> getPopularSeries(@Query("api_key") String key);
+    Call<DatosSerie> getPopularSeries(@Query("api_key") String key);
 
 
 }

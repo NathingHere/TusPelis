@@ -8,25 +8,25 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tuspelis.R;
-import com.example.tuspelis.Series.Models.Results;
-import com.example.tuspelis.Series.SerieDetalle;
+import com.example.tuspelis.Series.Models.Series;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 public class Adapter_Series extends RecyclerView.Adapter<Adapter_Series.SerieHolder> {
 
-    private List<Results> Results;
+    private List<Series> seriesList;
     private Context context;
 
 
-    public Adapter_Series(List<com.example.tuspelis.Series.Models.Results> results, Context context) {
-        Results = results;
+    public Adapter_Series(List<Series> seriesList, Context context) {
+        this.seriesList = seriesList;
         this.context = context;
     }
 
@@ -40,7 +40,7 @@ public class Adapter_Series extends RecyclerView.Adapter<Adapter_Series.SerieHol
 
     @Override
     public void onBindViewHolder(@NonNull SerieHolder holder, int position) {
-        Results serie = Results.get(position);
+        Series serie = seriesList.get(position);
         holder.titulo.setText(serie.getName());
 
         Picasso.get().load("https://image.tmdb.org/t/p/original"+serie.getPoster_path()).into(holder.portada);
@@ -48,9 +48,10 @@ public class Adapter_Series extends RecyclerView.Adapter<Adapter_Series.SerieHol
         holder.layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, SerieDetalle.class);
+               /* Intent intent = new Intent(context, SerieDetalle.class);
                 intent.putExtra("data", serie);
-                context.startActivity(intent);
+                context.startActivity(intent);*/
+                Toast.makeText(context, serie.getOriginal_name(), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -58,11 +59,11 @@ public class Adapter_Series extends RecyclerView.Adapter<Adapter_Series.SerieHol
 
     @Override
     public int getItemCount() {
-        return Results.size();
+        return seriesList.size();
     }
 
-    public void setLista (List<Results> lista) {
-        this.Results = lista;
+    public void setLista (List<Series> lista) {
+        this.seriesList = lista;
         notifyDataSetChanged();
     }
 

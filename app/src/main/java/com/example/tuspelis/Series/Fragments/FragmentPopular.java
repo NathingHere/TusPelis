@@ -16,8 +16,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.tuspelis.MainActivity;
 import com.example.tuspelis.R;
 import com.example.tuspelis.Series.Adapters.Adapter_Series;
-import com.example.tuspelis.Series.Models.Datos_serie;
-import com.example.tuspelis.Series.Models.Results;
+import com.example.tuspelis.Series.Models.DatosSerie;
+
+import com.example.tuspelis.Series.Models.Series;
 import com.example.tuspelis.WebService.MyClient;
 
 import java.util.ArrayList;
@@ -37,7 +38,7 @@ public class FragmentPopular extends Fragment {
     private TextView txtPrueba;
     private Adapter_Series adapter;
     private RecyclerView recyclerview;
-    private List<Results> listadoseries;
+    private List<Series> listadoseries;
 
     @Nullable
     @Override
@@ -65,20 +66,20 @@ public class FragmentPopular extends Fragment {
                 .build();
 
         MyClient client = retrofit.create(MyClient.class);
-        Call<Datos_serie> call = client.getPopularSeries(MainActivity.KEY);
-        call.enqueue(new Callback<Datos_serie>() {
-            @Override
-            public void onResponse(Call<Datos_serie> call, Response<Datos_serie> response) {
-                int code = response.code();
-                Datos_serie datos = response.body();
-                List<Results> listado = datos.getResults();
-                adapter.setLista(listado);
-            }
+      Call<DatosSerie> peticion = client.getPopularSeries(MainActivity.KEY);
+      peticion.enqueue(new Callback<DatosSerie>() {
+          @Override
+          public void onResponse(Call<DatosSerie> call, Response<DatosSerie> response) {
+              int code = response.code();
+              DatosSerie serie = response.body();
+              List<Series> list = serie.getResults();
+              adapter.setLista(list);
+          }
 
-            @Override
-            public void onFailure(Call<Datos_serie> call, Throwable t) {
-                Toast.makeText(getActivity(), "No ha funcionado", Toast.LENGTH_SHORT).show();
-            }
-        });
+          @Override
+          public void onFailure(Call<DatosSerie> call, Throwable t) {
+              Toast.makeText(getContext(), "Fallo", Toast.LENGTH_SHORT).show();
+          }
+      });
     }
 }
