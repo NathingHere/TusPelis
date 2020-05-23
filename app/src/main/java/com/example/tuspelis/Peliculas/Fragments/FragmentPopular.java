@@ -31,7 +31,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class FragmentPopular extends Fragment {
+public class FragmentPopular extends Fragment { //PELICULAS
     private View v;
     private TextView txtPrueba;
     private AdapterListado adapter;

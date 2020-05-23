@@ -36,11 +36,13 @@
 
     <TextView
         android:id="@+id/txtDetallleTitulo"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:fontFamily="@font/dosis_semibold"
+        android:textAlignment="center"
         android:textColor="#000000"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -73,17 +75,23 @@
 
         <Button
             android:id="@+id/btnDetalleAlquilar"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_weight="1"
             android:fontFamily="@font/dosis_semibold"
-            tools:text="Alquilar por: $2.99" />
+            android:text="Añadir a Favoritos" />
 
         <Button
             android:id="@+id/btnDetalleComprar"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_weight="1"
             android:fontFamily="@font/dosis_semibold"
-            tools:text="Comprar por:  $14.99" />
+            android:text="Watch Later" />
     </LinearLayout>
 
     <LinearLayout
@@ -215,98 +223,32 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/dsfe"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="top"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:fontFamily="@font/dosis_semibold"
-                android:text="Review"
-                android:textColor="#FF5722"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/txtDetalleReview"
-                android:layout_width="263dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:layout_marginEnd="15dp"
-                android:fontFamily="@font/dosis_semibold"
-                tools:text="Los Vengadores restantes deben encontrar una manera de recuperar a sus aliados para un enfrentamiento épico con Thanos, el malvado que diezmó el planeta y el universo." />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/fsfe"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="top"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:fontFamily="@font/dosis_semibold"
-                android:text="Descripción"
-                android:textColor="#FF5722"
-                android:textSize="18sp"
-                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/txtDetalleDescripcion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="15dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                android:layout_weight="1"
                 android:fontFamily="@font/dosis_semibold"
                 tools:text="Los Vengadores restantes deben encontrar una manera de recuperar a sus aliados para un enfrentamiento épico con Thanos, el malvado que diezmó el planeta y el universo." />
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="top"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:fontFamily="@font/dosis_semibold"
-                android:text="Información"
-                android:textColor="#FF5722"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/txtDetalleInformacion"
-                android:layout_width="301dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="15dp"
-                android:fontFamily="@font/dosis_semibold"
-                tools:text="Los Vengadores restantes deben encontrar una manera de recuperar a sus aliados para un enfrentamiento épico con Thanos, el malvado que diezmó el planeta y el universo." />
-        </LinearLayout>
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerDetalle"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginBottom="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

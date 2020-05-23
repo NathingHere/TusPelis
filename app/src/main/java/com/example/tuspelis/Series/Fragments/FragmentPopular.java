@@ -32,7 +32,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class FragmentPopular extends Fragment {
+public class FragmentPopular extends Fragment { //SERIES
 
     private View view;
     private TextView txtPrueba;
@@ -70,10 +70,8 @@ public class FragmentPopular extends Fragment {
       peticion.enqueue(new Callback<DatosSerie>() {
           @Override
           public void onResponse(Call<DatosSerie> call, Response<DatosSerie> response) {
-              int code = response.code();
-              DatosSerie serie = response.body();
-              List<Series> list = serie.getResults();
-              adapter.setLista(list);
+              listadoseries = response.body().getResults();
+              adapter.setLista(listadoseries);
           }
 
           @Override

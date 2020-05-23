@@ -18,192 +18,185 @@
         app:srcCompat="@drawable/fondo2" />
 
     <LinearLayout
+        android:id="@+id/linearLayout5"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="50dp"
-        android:layout_marginBottom="50dp"
-        android:gravity="center_vertical"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="50dp">
 
         <LinearLayout
+            android:id="@+id/iconoPeliculas"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
-            <LinearLayout
-                android:id="@+id/iconoPeliculas"
+            <ImageButton
+                android:id="@+id/btnPeliculas"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="75dp"
-                android:gravity="center"
-                android:orientation="vertical">
+                android:background="#00FFFFFF"
+                app:srcCompat="@drawable/iconopeliculas" />
 
-                <ImageButton
-                    android:id="@+id/btnPeliculas"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="#00FFFFFF"
-                    app:srcCompat="@drawable/iconopeliculas" />
-
-                <TextView
-                    android:id="@+id/textView234"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/dosis_semibold"
-                    android:text="Peliculas"
-                    android:textColor="#A7A7A7"
-                    android:textSize="18sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/iconoSeries"
+            <TextView
+                android:id="@+id/textView234"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginStart="75dp"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <ImageButton
-                    android:id="@+id/btnSeries"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="#00000000"
-                    app:srcCompat="@drawable/iconoseries" />
-
-                <TextView
-                    android:id="@+id/textView3234"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/dosis_semibold"
-                    android:text="Series"
-                    android:textColor="#A7A7A7"
-                    android:textSize="18sp" />
-            </LinearLayout>
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/dosis_semibold"
+                android:text="Peliculas"
+                android:textColor="#A7A7A7"
+                android:textSize="18sp" />
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/iconoSeries"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="80dp"
-            android:layout_marginBottom="80dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
-            <LinearLayout
-                android:id="@+id/iconoBuscador"
+            <ImageButton
+                android:id="@+id/btnSeries"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="75dp"
-                android:gravity="center"
-                android:orientation="vertical">
+                android:background="#00000000"
+                app:srcCompat="@drawable/iconoseries" />
 
-                <ImageButton
-                    android:id="@+id/btnBuscador"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="#00FFFFFF"
-                    app:srcCompat="@drawable/iconbuscador" />
-
-                <TextView
-                    android:id="@+id/textView12"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/dosis_semibold"
-                    android:text="Buscador"
-                    android:textColor="#A7A7A7"
-                    android:textSize="18sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/iconoFavoritos"
+            <TextView
+                android:id="@+id/textView3234"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginStart="75dp"
-                android:gravity="center"
-                android:orientation="vertical">
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/dosis_semibold"
+                android:text="Series"
+                android:textColor="#A7A7A7"
+                android:textSize="18sp" />
+        </LinearLayout>
+    </LinearLayout>
 
-                <ImageButton
-                    android:id="@+id/btnFav"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="#00000000"
-                    app:srcCompat="@drawable/iconofavoritos" />
+    <LinearLayout
+        android:id="@+id/linearLayout4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="100dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="@+id/ivDetalleFondoPortada"
+        tools:layout_editor_absoluteX="50dp">
 
-                <TextView
-                    android:id="@+id/textView332"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/dosis_semibold"
-                    android:text="Favoritos"
-                    android:textColor="#A7A7A7"
-                    android:textSize="18sp" />
-            </LinearLayout>
+        <LinearLayout
+            android:id="@+id/iconoVotos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageButton
+                android:id="@+id/btnVotos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#00FFFFFF"
+                app:srcCompat="@drawable/iconovotos" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/dosis_semibold"
+                android:text="Votos"
+                android:textColor="#A7A7A7"
+                android:textSize="18sp" />
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/iconoWatchLater"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
-            <LinearLayout
-                android:id="@+id/iconoVotos"
+            <ImageButton
+                android:id="@+id/btnWatch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="75dp"
-                android:gravity="center"
-                android:orientation="vertical">
+                android:background="#00000000"
+                app:srcCompat="@drawable/iconowathclater" />
 
-                <ImageButton
-                    android:id="@+id/btnVotos"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="#00FFFFFF"
-                    app:srcCompat="@drawable/iconovotos" />
-
-                <TextView
-                    android:id="@+id/textView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/dosis_semibold"
-                    android:text="Votos"
-                    android:textColor="#A7A7A7"
-                    android:textSize="18sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/iconoWatchLater"
+            <TextView
+                android:id="@+id/textView3"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginStart="75dp"
-                android:gravity="center"
-                android:orientation="vertical">
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/dosis_semibold"
+                android:text="Watch Later"
+                android:textColor="#A7A7A7"
+                android:textSize="18sp" />
+        </LinearLayout>
+    </LinearLayout>
 
-                <ImageButton
-                    android:id="@+id/btnWatch"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="#00000000"
-                    app:srcCompat="@drawable/iconowathclater" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout4"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout5"
+        tools:layout_editor_absoluteX="50dp">
 
-                <TextView
-                    android:id="@+id/textView3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/dosis_semibold"
-                    android:text="Watch Later"
-                    android:textColor="#A7A7A7"
-                    android:textSize="18sp" />
-            </LinearLayout>
+        <LinearLayout
+            android:id="@+id/iconoBuscador"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageButton
+                android:id="@+id/btnBuscador"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#00FFFFFF"
+                app:srcCompat="@drawable/iconbuscador" />
+
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/dosis_semibold"
+                android:text="Buscador"
+                android:textColor="#A7A7A7"
+                android:textSize="18sp" />
         </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/iconoFavoritos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageButton
+                android:id="@+id/btnFav"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#00000000"
+                app:srcCompat="@drawable/iconofavoritos" />
+
+            <TextView
+                android:id="@+id/textView332"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/dosis_semibold"
+                android:text="Favoritos"
+                android:textColor="#A7A7A7"
+                android:textSize="18sp" />
+        </LinearLayout>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

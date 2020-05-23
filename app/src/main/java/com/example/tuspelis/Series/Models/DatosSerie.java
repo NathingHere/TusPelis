@@ -1,5 +1,7 @@
 package com.example.tuspelis.Series.Models;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.List;
 
 public class DatosSerie{
@@ -7,7 +9,7 @@ public class DatosSerie{
     private int page;
     private int total_results;
     private int total_pages;
-    private List<Series> results;
+    private ArrayList<Series> results;
 
     public int getPage() {
         return page;
@@ -33,11 +35,11 @@ public class DatosSerie{
         this.total_pages = total_pages;
     }
 
-    public List<Series> getResults() {
+    public ArrayList<Series> getResults() {
         return results;
     }
 
-    public void setResults(List<Series> results) {
+    public void setResults(ArrayList<Series> results) {
         this.results = results;
     }
 }

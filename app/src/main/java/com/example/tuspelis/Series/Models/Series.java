@@ -4,14 +4,15 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Series implements Parcelable {
 
     private String original_name;
-    private ArrayList<Integer> genre_ids;
+    private List<Integer> genre_ids;
     private String name;
     private int popularity;
-    private ArrayList<String> origin_country;
+    private List<String> origin_country;
     private int vote_count;
     private String first_air_date;
     private String backdrop_path;
@@ -77,11 +78,11 @@ public class Series implements Parcelable {
         this.original_name = original_name;
     }
 
-    public ArrayList<Integer> getGenre_ids() {
+    public List<Integer> getGenre_ids() {
         return genre_ids;
     }
 
-    public void setGenre_ids(ArrayList<Integer> genre_ids) {
+    public void setGenre_ids(List<Integer> genre_ids) {
         this.genre_ids = genre_ids;
     }
 
@@ -101,11 +102,11 @@ public class Series implements Parcelable {
         this.popularity = popularity;
     }
 
-    public ArrayList<String> getOrigin_country() {
+    public List<String> getOrigin_country() {
         return origin_country;
     }
 
-    public void setOrigin_country(ArrayList<String> origin_country) {
+    public void setOrigin_country(List<String> origin_country) {
         this.origin_country = origin_country;
     }
 
