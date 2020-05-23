@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,8 +16,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.tuspelis.MainActivity;
 import com.example.tuspelis.R;
 import com.example.tuspelis.Series.Adapters.Adapter_Series;
-import com.example.tuspelis.Series.Models.ListadoSeries;
-import com.example.tuspelis.Series.Models.Serie;
+import com.example.tuspelis.Series.Models.Datos_serie;
+import com.example.tuspelis.Series.Models.Results;
 import com.example.tuspelis.WebService.MyClient;
 
 import java.util.ArrayList;
@@ -36,7 +37,7 @@ public class FragmentPopular extends Fragment {
     private TextView txtPrueba;
     private Adapter_Series adapter;
     private RecyclerView recyclerview;
-    private List<Serie> listadoseries;
+    private List<Results> listadoseries;
 
     @Nullable
     @Override
@@ -64,17 +65,19 @@ public class FragmentPopular extends Fragment {
                 .build();
 
         MyClient client = retrofit.create(MyClient.class);
-        Call<ListadoSeries> call = client.getPopularSeries(MainActivity.KEY);
-        call.enqueue(new Callback<ListadoSeries>() {
+        Call<Datos_serie> call = client.getPopularSeries(MainActivity.KEY);
+        call.enqueue(new Callback<Datos_serie>() {
             @Override
-            public void onResponse(Call<ListadoSeries> call, Response<ListadoSeries> response) {
-                listadoseries = response.body().getResults();
-                adapter.setLista(listadoseries);
+            public void onResponse(Call<Datos_serie> call, Response<Datos_serie> response) {
+                int code = response.code();
+                Datos_serie datos = response.body();
+                List<Results> listado = datos.getResults();
+                adapter.setLista(listado);
             }
 
             @Override
-            public void onFailure(Call<ListadoSeries> call, Throwable t) {
-
+            public void onFailure(Call<Datos_serie> call, Throwable t) {
+                Toast.makeText(getActivity(), "No ha funcionado", Toast.LENGTH_SHORT).show();
             }
         });
     }

@@ -13,7 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tuspelis.R;
-import com.example.tuspelis.Series.Models.Serie;
+import com.example.tuspelis.Series.Models.Results;
 import com.example.tuspelis.Series.SerieDetalle;
 import com.squareup.picasso.Picasso;
 
@@ -21,12 +21,12 @@ import java.util.List;
 
 public class Adapter_Series extends RecyclerView.Adapter<Adapter_Series.SerieHolder> {
 
-    private List<Serie> series;
+    private List<Results> Results;
     private Context context;
 
 
-    public Adapter_Series(List<Serie> series, Context context) {
-        this.series = series;
+    public Adapter_Series(List<com.example.tuspelis.Series.Models.Results> results, Context context) {
+        Results = results;
         this.context = context;
     }
 
@@ -40,7 +40,7 @@ public class Adapter_Series extends RecyclerView.Adapter<Adapter_Series.SerieHol
 
     @Override
     public void onBindViewHolder(@NonNull SerieHolder holder, int position) {
-        Serie serie = series.get(position);
+        Results serie = Results.get(position);
         holder.titulo.setText(serie.getName());
 
         Picasso.get().load("https://image.tmdb.org/t/p/original"+serie.getPoster_path()).into(holder.portada);
@@ -49,7 +49,7 @@ public class Adapter_Series extends RecyclerView.Adapter<Adapter_Series.SerieHol
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, SerieDetalle.class);
-                intent.putExtra("data", series.get(position));
+                intent.putExtra("data", serie);
                 context.startActivity(intent);
             }
         });
@@ -58,11 +58,11 @@ public class Adapter_Series extends RecyclerView.Adapter<Adapter_Series.SerieHol
 
     @Override
     public int getItemCount() {
-        return series.size();
+        return Results.size();
     }
 
-    public void setLista (List<Serie> lista) {
-        this.series = lista;
+    public void setLista (List<Results> lista) {
+        this.Results = lista;
         notifyDataSetChanged();
     }
 
