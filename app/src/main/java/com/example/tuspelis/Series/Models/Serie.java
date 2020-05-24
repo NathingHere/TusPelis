@@ -3,23 +3,41 @@ package com.example.tuspelis.Series.Models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
+
+import retrofit2.http.Query;
 
 public class Serie implements Parcelable {
 
+    @SerializedName("original_name")
     private String original_name;
+    @SerializedName("genre_ids")
     private List<Integer> genre_ids;
+    @SerializedName("name")
     private String name;
+    @SerializedName("popularity")
     private int popularity;
+    @SerializedName("origin_country")
     private List<String> origin_country;
+    @SerializedName("vote_count")
     private int vote_count;
+    @SerializedName("first_aid_date")
     private String first_air_date;
+    @SerializedName("backdrop_path")
     private String backdrop_path;
+    @SerializedName("original_language")
     private String original_language;
+    @SerializedName("id")
     private int id;
+    @SerializedName("vote_average")
     private int vote_average;
+    @SerializedName("overview")
     private String overview;
+    @SerializedName("poster_path")
     private String poster_path;
+
 
     protected Serie(Parcel in) {
         original_name = in.readString();
@@ -35,39 +53,6 @@ public class Serie implements Parcelable {
         overview = in.readString();
         poster_path = in.readString();
     }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(original_name);
-        dest.writeString(name);
-        dest.writeInt(popularity);
-        dest.writeStringList(origin_country);
-        dest.writeInt(vote_count);
-        dest.writeString(first_air_date);
-        dest.writeString(backdrop_path);
-        dest.writeString(original_language);
-        dest.writeInt(id);
-        dest.writeInt(vote_average);
-        dest.writeString(overview);
-        dest.writeString(poster_path);
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    public static final Creator<Serie> CREATOR = new Creator<Serie>() {
-        @Override
-        public Serie createFromParcel(Parcel in) {
-            return new Serie(in);
-        }
-
-        @Override
-        public Serie[] newArray(int size) {
-            return new Serie[size];
-        }
-    };
 
     public String getOriginal_name() {
         return original_name;
@@ -172,4 +157,53 @@ public class Serie implements Parcelable {
     public void setPoster_path(String poster_path) {
         this.poster_path = poster_path;
     }
+
+    public Serie(String original_name, List<Integer> genre_ids, String name, int popularity, List<String> origin_country, int vote_count, String first_air_date, String backdrop_path, String original_language, int id, int vote_average, String overview, String poster_path) {
+        this.original_name = original_name;
+        this.genre_ids = genre_ids;
+        this.name = name;
+        this.popularity = popularity;
+        this.origin_country = origin_country;
+        this.vote_count = vote_count;
+        this.first_air_date = first_air_date;
+        this.backdrop_path = backdrop_path;
+        this.original_language = original_language;
+        this.id = id;
+        this.vote_average = vote_average;
+        this.overview = overview;
+        this.poster_path = poster_path;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(original_name);
+        dest.writeString(name);
+        dest.writeInt(popularity);
+        dest.writeStringList(origin_country);
+        dest.writeInt(vote_count);
+        dest.writeString(first_air_date);
+        dest.writeString(backdrop_path);
+        dest.writeString(original_language);
+        dest.writeInt(id);
+        dest.writeInt(vote_average);
+        dest.writeString(overview);
+        dest.writeString(poster_path);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<Serie> CREATOR = new Creator<Serie>() {
+        @Override
+        public Serie createFromParcel(Parcel in) {
+            return new Serie(in);
+        }
+
+        @Override
+        public Serie[] newArray(int size) {
+            return new Serie[size];
+        }
+    };
 }

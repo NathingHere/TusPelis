@@ -20,12 +20,12 @@ import java.util.List;
 
 public class Adapter_Series extends RecyclerView.Adapter<Adapter_Series.SerieHolder> {
 
-    private List<Serie> seriesList;
+    private List<Serie> series;
     private Context context;
 
 
-    public Adapter_Series(List<Serie> seriesList, Context context) {
-        this.seriesList = seriesList;
+    public Adapter_Series(List<Serie> series, Context context) {
+        this.series = series;
         this.context = context;
     }
 
@@ -39,7 +39,7 @@ public class Adapter_Series extends RecyclerView.Adapter<Adapter_Series.SerieHol
 
     @Override
     public void onBindViewHolder(@NonNull SerieHolder holder, int position) {
-        Serie serie = seriesList.get(position);
+        Serie serie = series.get(position);
         holder.titulo.setText(serie.getName());
 
         Picasso.get().load("https://image.tmdb.org/t/p/original"+serie.getPoster_path()).into(holder.portada);
@@ -58,11 +58,11 @@ public class Adapter_Series extends RecyclerView.Adapter<Adapter_Series.SerieHol
 
     @Override
     public int getItemCount() {
-        return seriesList.size();
+        return series.size();
     }
 
     public void setLista (List<Serie> lista) {
-        this.seriesList = lista;
+        this.series = lista;
         notifyDataSetChanged();
     }
 

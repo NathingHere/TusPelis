@@ -1,4 +1,4 @@
-package com.example.tuspelis.Series.Models;
+package com.example.tuspelis.Series;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,6 +14,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.tuspelis.MainActivity;
 import com.example.tuspelis.R;
+import com.example.tuspelis.Series.Models.GenerosSeries;
+import com.example.tuspelis.Series.Models.ListadoTrailerSerie;
+import com.example.tuspelis.Series.Models.Serie;
 import com.example.tuspelis.WebService.MyClient;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
