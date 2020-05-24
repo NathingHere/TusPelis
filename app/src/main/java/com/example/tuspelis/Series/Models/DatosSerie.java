@@ -1,15 +1,13 @@
 package com.example.tuspelis.Series.Models;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.List;
 
 public class DatosSerie{
 
     private int page;
     private int total_results;
     private int total_pages;
-    private ArrayList<Series> results;
+    private ArrayList<Serie> results;
 
     public int getPage() {
         return page;
@@ -35,11 +33,11 @@ public class DatosSerie{
         this.total_pages = total_pages;
     }
 
-    public ArrayList<Series> getResults() {
+    public ArrayList<Serie> getResults() {
         return results;
     }
 
-    public void setResults(ArrayList<Series> results) {
+    public void setResults(ArrayList<Serie> results) {
         this.results = results;
     }
 }

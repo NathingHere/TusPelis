@@ -1,7 +1,6 @@
 package com.example.tuspelis.Series.Adapters;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,18 +13,18 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tuspelis.R;
-import com.example.tuspelis.Series.Models.Series;
+import com.example.tuspelis.Series.Models.Serie;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 public class Adapter_Series extends RecyclerView.Adapter<Adapter_Series.SerieHolder> {
 
-    private List<Series> seriesList;
+    private List<Serie> seriesList;
     private Context context;
 
 
-    public Adapter_Series(List<Series> seriesList, Context context) {
+    public Adapter_Series(List<Serie> seriesList, Context context) {
         this.seriesList = seriesList;
         this.context = context;
     }
@@ -40,7 +39,7 @@ public class Adapter_Series extends RecyclerView.Adapter<Adapter_Series.SerieHol
 
     @Override
     public void onBindViewHolder(@NonNull SerieHolder holder, int position) {
-        Series serie = seriesList.get(position);
+        Serie serie = seriesList.get(position);
         holder.titulo.setText(serie.getName());
 
         Picasso.get().load("https://image.tmdb.org/t/p/original"+serie.getPoster_path()).into(holder.portada);
@@ -62,7 +61,7 @@ public class Adapter_Series extends RecyclerView.Adapter<Adapter_Series.SerieHol
         return seriesList.size();
     }
 
-    public void setLista (List<Series> lista) {
+    public void setLista (List<Serie> lista) {
         this.seriesList = lista;
         notifyDataSetChanged();
     }

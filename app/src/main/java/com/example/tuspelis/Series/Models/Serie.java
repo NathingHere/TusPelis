@@ -3,10 +3,9 @@ package com.example.tuspelis.Series.Models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class Series implements Parcelable {
+public class Serie implements Parcelable {
 
     private String original_name;
     private List<Integer> genre_ids;
@@ -22,7 +21,7 @@ public class Series implements Parcelable {
     private String overview;
     private String poster_path;
 
-    protected Series(Parcel in) {
+    protected Serie(Parcel in) {
         original_name = in.readString();
         name = in.readString();
         popularity = in.readInt();
@@ -58,15 +57,15 @@ public class Series implements Parcelable {
         return 0;
     }
 
-    public static final Creator<Series> CREATOR = new Creator<Series>() {
+    public static final Creator<Serie> CREATOR = new Creator<Serie>() {
         @Override
-        public Series createFromParcel(Parcel in) {
-            return new Series(in);
+        public Serie createFromParcel(Parcel in) {
+            return new Serie(in);
         }
 
         @Override
-        public Series[] newArray(int size) {
-            return new Series[size];
+        public Serie[] newArray(int size) {
+            return new Serie[size];
         }
     };
 

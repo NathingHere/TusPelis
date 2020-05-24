@@ -18,7 +18,7 @@ import com.example.tuspelis.R;
 import com.example.tuspelis.Series.Adapters.Adapter_Series;
 import com.example.tuspelis.Series.Models.DatosSerie;
 
-import com.example.tuspelis.Series.Models.Series;
+import com.example.tuspelis.Series.Models.Serie;
 import com.example.tuspelis.WebService.MyClient;
 
 import java.util.ArrayList;
@@ -38,7 +38,7 @@ public class FragmentPopular extends Fragment { //SERIES
     private TextView txtPrueba;
     private Adapter_Series adapter;
     private RecyclerView recyclerview;
-    private List<Series> listadoseries;
+    private List<Serie> listadoseries;
 
     @Nullable
     @Override
