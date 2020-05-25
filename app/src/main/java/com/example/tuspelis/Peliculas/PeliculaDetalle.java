@@ -1,6 +1,5 @@
 package com.example.tuspelis.Peliculas;
 
-import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -8,7 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,11 +16,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.tuspelis.MainActivity;
 import com.example.tuspelis.Peliculas.Adapters.AdapterListado;
 import com.example.tuspelis.Peliculas.Models.GenerosPeliculas;
-import com.example.tuspelis.Peliculas.Models.ListadoGenerosPeliculas;
 import com.example.tuspelis.Peliculas.Models.ListadoPeliculas;
 import com.example.tuspelis.Peliculas.Models.ListadoTrailerPelicula;
 import com.example.tuspelis.Peliculas.Models.Pelicula;
-import com.example.tuspelis.Peliculas.Models.TrailerPelicula;
+import com.example.tuspelis.Peliculas.Models.PeliculaExtended;
 import com.example.tuspelis.R;
 import com.example.tuspelis.WebService.MyClient;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -42,17 +39,13 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class PeliculaDetalle extends AppCompatActivity {
 
     private Pelicula pelicula;
-
-    Context context;
-
-    String genero;
-    ImageView portada, fondo;
-    TextView titulo, fechaSalida, descripcion, valoraciones, generoPelicula;
-    FloatingActionButton trailer;
-    List<GenerosPeliculas> generosPeliculas;
-    List<Pelicula> peliculasRecomendadas;
+    private ImageView portada, fondo;
+    private TextView titulo, fechaSalida, descripcion, valoraciones, generoPelicula;
+    private FloatingActionButton trailer;
+    private List<Pelicula> peliculasRecomendadas;
     private AdapterListado adapter;
     private RecyclerView recyclerView;
+    private List<GenerosPeliculas> generosPeliculas;
 
     String trailerKey;
 
@@ -64,6 +57,7 @@ public class PeliculaDetalle extends AppCompatActivity {
         Intent intent = getIntent();
         pelicula = intent.getParcelableExtra("data");
 
+        generoPelicula = findViewById(R.id.txtDetalleGenero);
         trailer = findViewById(R.id.btnDetalleTrailer);
         titulo = findViewById(R.id.txtDetallleTitulo);
         titulo.setText(pelicula.getTitle());
@@ -84,14 +78,13 @@ public class PeliculaDetalle extends AppCompatActivity {
             }
         });
 
-        //request();
+        requestDetalles();
 
-        generoPelicula = findViewById(R.id.txtDetalleGenero);
-        generoPelicula.setText(genero);
-
+        //Cargar Imagenes
         Picasso.get().load("https://image.tmdb.org/t/p/original"+pelicula.getPosterPath()).into(portada);
         Picasso.get().load("https://image.tmdb.org/t/p/original"+pelicula.getBackdropPath()).into(fondo);
 
+        //Adapter
         peliculasRecomendadas = new ArrayList<>();
         recyclerView = findViewById(R.id.recyclerDetalle);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
@@ -129,36 +122,6 @@ public class PeliculaDetalle extends AppCompatActivity {
         });
     }
 
-    public void requestGenero() {
-        HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY);
-        OkHttpClient.Builder httpClientBuilder = new OkHttpClient.Builder().addInterceptor(loggingInterceptor);
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(MyClient.BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(httpClientBuilder.build())
-                .build();
-
-        MyClient client = retrofit.create(MyClient.class);
-        Call<ListadoGenerosPeliculas> call = client.getGenerosPeliculas(MainActivity.KEY);
-        call.enqueue(new Callback<ListadoGenerosPeliculas>() {
-            @Override
-            public void onResponse(Call<ListadoGenerosPeliculas> call, Response<ListadoGenerosPeliculas> response) {
-                generosPeliculas = response.body().getGenreResults();
-                for(int i=0; i<generosPeliculas.size(); i++) {
-                    if (pelicula.getGenreId().get(0) == generosPeliculas.get(i).getId()) { //coger lista de id de la peliculadetalle
-                        genero = generosPeliculas.get(i).getName();
-                        break;
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ListadoGenerosPeliculas> call, Throwable t) {
-
-            }
-        });
-    }
-
     private void requestRecommended() {
         HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient.Builder httpClientBuilder = new OkHttpClient.Builder().addInterceptor(loggingInterceptor);
@@ -179,6 +142,31 @@ public class PeliculaDetalle extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<ListadoPeliculas> call, Throwable t) {
+
+            }
+        });
+    }
+
+    private void requestDetalles() {
+        HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY);
+        OkHttpClient.Builder httpClientBuilder = new OkHttpClient.Builder().addInterceptor(loggingInterceptor);
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(MyClient.BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(httpClientBuilder.build())
+                .build();
+
+        MyClient client = retrofit.create(MyClient.class);
+        Call<PeliculaExtended> call = client.getMovieDetails(pelicula.getId(), MainActivity.KEY);
+        call.enqueue(new Callback<PeliculaExtended>() {
+            @Override
+            public void onResponse(Call<PeliculaExtended> call, Response<PeliculaExtended> response) {
+                generosPeliculas = response.body().getGenres();
+                generoPelicula.setText(generosPeliculas.get(0).getName());
+            }
+
+            @Override
+            public void onFailure(Call<PeliculaExtended> call, Throwable t) {
 
             }
         });
