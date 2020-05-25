@@ -41,9 +41,6 @@ public interface MyClient {
     @GET("movie/{movie_id}/recommendations")
     Call<ListadoPeliculas> getRecommendedMovies(@Path("movie_id") int movieId, @Query("api_key") String key);
 
-    //@GET("tv/{tv_id}")
-    //Call<SeriePlus> getSerieDetals(@Path("tv_id") int tv_id, @Query("api_key") String key);
-
     @GET("tv/popular")
     Call<ListadoSerie> getPopularSeries(@Query("api_key") String key);
 
@@ -56,7 +53,7 @@ public interface MyClient {
     @GET("tv/on_the_air")
     Call<ListadoSerie> getOnAirSeries(@Query("api_key") String key);
 
-    @GET("tv/{tv_id}/videos")
+    @GET("tv/{id}/videos")
     Call<ListadoTrailerSerie> getTrailersSeries(@Path("id") int tv_id, @Query("api_key") String key);
 
     @GET("genre/tv/list")

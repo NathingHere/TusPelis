@@ -19,6 +19,7 @@ import com.example.tuspelis.Series.Models.ListadoTrailerSerie;
 import com.example.tuspelis.Series.Models.Serie;
 import com.example.tuspelis.WebService.MyClient;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -65,11 +66,14 @@ public class SerieDetalle extends AppCompatActivity {
 
         portada = findViewById(R.id.ivDetalleMiniatura);
         fondo = findViewById(R.id.ivDetalleFondoPortada);
+
+        Picasso.get().load("https://image.tmdb.org/t/p/original"+serie.getPoster_path()).into(portada);
+        Picasso.get().load("https://image.tmdb.org/t/p/original"+serie.getBackdrop_path()).into(fondo);
         
         trailer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                
+                requestTrailer();
             }
         });
         

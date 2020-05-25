@@ -1,6 +1,7 @@
 package com.example.tuspelis.Series.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tuspelis.R;
 import com.example.tuspelis.Series.Models.Serie;
+import com.example.tuspelis.Series.SerieDetalle;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -47,10 +49,9 @@ public class Adapter_Series extends RecyclerView.Adapter<Adapter_Series.SerieHol
         holder.layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               /* Intent intent = new Intent(context, SerieDetalle.class);
+                Intent intent = new Intent(context, SerieDetalle.class);
                 intent.putExtra("data", serie);
-                context.startActivity(intent);*/
-                Toast.makeText(context, serie.getOriginal_name(), Toast.LENGTH_SHORT).show();
+                context.startActivity(intent);
             }
         });
 
