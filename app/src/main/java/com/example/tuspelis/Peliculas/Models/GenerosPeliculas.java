@@ -2,7 +2,7 @@ package com.example.tuspelis.Peliculas.Models;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class GenerosPeliculas {
     @SerializedName("id")

@@ -1,6 +1,5 @@
 package com.example.tuspelis.WebService;
 
-import com.example.tuspelis.Peliculas.Models.ListadoGenerosPeliculas;
 import com.example.tuspelis.Peliculas.Models.ListadoPeliculas;
 import com.example.tuspelis.Peliculas.Models.ListadoTrailerPelicula;
 import com.example.tuspelis.Peliculas.Models.PeliculaExtended;
@@ -34,9 +33,6 @@ public interface MyClient {
 
     @GET("movie/{id}/videos")
     Call<ListadoTrailerPelicula> getTrailers(@Path("id") int movieId, @Query("api_key") String key);
-
-    @GET("genre/movie/list")
-    Call<ListadoGenerosPeliculas> getGenerosPeliculas(@Query("api_key") String key);
 
     @GET("movie/{movie_id}/recommendations")
     Call<ListadoPeliculas> getRecommendedMovies(@Path("movie_id") int movieId, @Query("api_key") String key);
