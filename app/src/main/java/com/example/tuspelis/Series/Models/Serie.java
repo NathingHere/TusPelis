@@ -23,7 +23,7 @@ public class Serie implements Parcelable {
     private List<String> origin_country;
     @SerializedName("vote_count")
     private int vote_count;
-    @SerializedName("first_aid_date")
+    @SerializedName("first_air_date")
     private String first_air_date;
     @SerializedName("backdrop_path")
     private String backdrop_path;
