@@ -13,8 +13,10 @@ import com.example.tuspelis.Adapters.AdapterTabLayoutPeliculas;
 
 import com.example.tuspelis.Peliculas.Fragments.FragmentGeneralPeliculas;
 import com.example.tuspelis.R;
-import com.example.tuspelis.Series.Fragments.FragmentAir;
+import com.example.tuspelis.Series.Fragments.FragmentActuales;
+import com.example.tuspelis.Series.Fragments.FragmentOnAir;
 import com.example.tuspelis.Series.Fragments.FragmentPopular;
+import com.example.tuspelis.Series.Fragments.FragmentTopRated;
 import com.google.android.material.tabs.TabLayout;
 
 public class SeriesMain extends AppCompatActivity {
@@ -53,10 +55,10 @@ public class SeriesMain extends AppCompatActivity {
 
     private void loadViewpager(ViewPager viewPager){
         AdapterTabLayoutPeliculas adapter = new AdapterTabLayoutPeliculas(getSupportFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
-        adapter.addFragment(new FragmentAir());
-        adapter.addFragment(newInstance("Lanzamiento"));
-        adapter.addFragment(newInstance("Géneros"));
+        adapter.addFragment(new FragmentActuales());
+        adapter.addFragment(new FragmentOnAir());
         adapter.addFragment(new FragmentPopular());
+        adapter.addFragment(new FragmentTopRated());
         viewPager.setAdapter(adapter);
     }
 

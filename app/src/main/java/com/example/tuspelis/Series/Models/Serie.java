@@ -18,7 +18,7 @@ public class Serie implements Parcelable {
     @SerializedName("name")
     private String name;
     @SerializedName("popularity")
-    private int popularity;
+    private double popularity;
     @SerializedName("origin_country")
     private List<String> origin_country;
     @SerializedName("vote_count")
@@ -32,7 +32,7 @@ public class Serie implements Parcelable {
     @SerializedName("id")
     private int id;
     @SerializedName("vote_average")
-    private int vote_average;
+    private double vote_average;
     @SerializedName("overview")
     private String overview;
     @SerializedName("poster_path")
@@ -42,17 +42,50 @@ public class Serie implements Parcelable {
     protected Serie(Parcel in) {
         original_name = in.readString();
         name = in.readString();
-        popularity = in.readInt();
+        popularity = in.readDouble();
         origin_country = in.createStringArrayList();
         vote_count = in.readInt();
         first_air_date = in.readString();
         backdrop_path = in.readString();
         original_language = in.readString();
         id = in.readInt();
-        vote_average = in.readInt();
+        vote_average = in.readDouble();
         overview = in.readString();
         poster_path = in.readString();
     }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(original_name);
+        dest.writeString(name);
+        dest.writeDouble(popularity);
+        dest.writeStringList(origin_country);
+        dest.writeInt(vote_count);
+        dest.writeString(first_air_date);
+        dest.writeString(backdrop_path);
+        dest.writeString(original_language);
+        dest.writeInt(id);
+        dest.writeDouble(vote_average);
+        dest.writeString(overview);
+        dest.writeString(poster_path);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<Serie> CREATOR = new Creator<Serie>() {
+        @Override
+        public Serie createFromParcel(Parcel in) {
+            return new Serie(in);
+        }
+
+        @Override
+        public Serie[] newArray(int size) {
+            return new Serie[size];
+        }
+    };
 
     public String getOriginal_name() {
         return original_name;
@@ -78,11 +111,11 @@ public class Serie implements Parcelable {
         this.name = name;
     }
 
-    public int getPopularity() {
+    public double getPopularity() {
         return popularity;
     }
 
-    public void setPopularity(int popularity) {
+    public void setPopularity(double popularity) {
         this.popularity = popularity;
     }
 
@@ -134,11 +167,11 @@ public class Serie implements Parcelable {
         this.id = id;
     }
 
-    public int getVote_average() {
+    public double getVote_average() {
         return vote_average;
     }
 
-    public void setVote_average(int vote_average) {
+    public void setVote_average(double vote_average) {
         this.vote_average = vote_average;
     }
 
@@ -157,53 +190,4 @@ public class Serie implements Parcelable {
     public void setPoster_path(String poster_path) {
         this.poster_path = poster_path;
     }
-
-    public Serie(String original_name, List<Integer> genre_ids, String name, int popularity, List<String> origin_country, int vote_count, String first_air_date, String backdrop_path, String original_language, int id, int vote_average, String overview, String poster_path) {
-        this.original_name = original_name;
-        this.genre_ids = genre_ids;
-        this.name = name;
-        this.popularity = popularity;
-        this.origin_country = origin_country;
-        this.vote_count = vote_count;
-        this.first_air_date = first_air_date;
-        this.backdrop_path = backdrop_path;
-        this.original_language = original_language;
-        this.id = id;
-        this.vote_average = vote_average;
-        this.overview = overview;
-        this.poster_path = poster_path;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(original_name);
-        dest.writeString(name);
-        dest.writeInt(popularity);
-        dest.writeStringList(origin_country);
-        dest.writeInt(vote_count);
-        dest.writeString(first_air_date);
-        dest.writeString(backdrop_path);
-        dest.writeString(original_language);
-        dest.writeInt(id);
-        dest.writeInt(vote_average);
-        dest.writeString(overview);
-        dest.writeString(poster_path);
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    public static final Creator<Serie> CREATOR = new Creator<Serie>() {
-        @Override
-        public Serie createFromParcel(Parcel in) {
-            return new Serie(in);
-        }
-
-        @Override
-        public Serie[] newArray(int size) {
-            return new Serie[size];
-        }
-    };
 }

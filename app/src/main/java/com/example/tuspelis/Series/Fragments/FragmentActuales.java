@@ -34,8 +34,8 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class FragmentAir extends Fragment {
-    private View v;
+public class FragmentActuales extends Fragment {
+    private View view;
     private TextView txtPrueba;
     private Adapter_Series adapter;
     private RecyclerView recyclerView;
@@ -44,20 +44,20 @@ public class FragmentAir extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        v = inflater.inflate(R.layout.fragments,container,false);
-        txtPrueba = v.findViewById(R.id.txtPrueba);
+        view = inflater.inflate(R.layout.fragments,container,false);
+        txtPrueba = view.findViewById(R.id.txtPrueba);
         listadoserie = new ArrayList<>();
-        recyclerView = v.findViewById(R.id.recyclerview);
-        txtPrueba.setText("Air");
+        recyclerView = view.findViewById(R.id.recyclerview);
+        txtPrueba.setText("Actuales");
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         adapter = new Adapter_Series(listadoserie, getActivity());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
-        sendRequest();
-        return v;
+        sendPeticion();
+        return view;
     }
 
-    private void sendRequest() {
+    private void sendPeticion() {
         HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient.Builder httpClientBuilder = new OkHttpClient.Builder().addInterceptor(loggingInterceptor);
         Retrofit retrofit = new Retrofit.Builder()
@@ -77,7 +77,7 @@ public class FragmentAir extends Fragment {
 
             @Override
             public void onFailure(Call<ListadoSerie> call, Throwable t) {
-                Toast.makeText(getActivity(), "HOLA", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Fallo", Toast.LENGTH_SHORT).show();
             }
         });
     }

@@ -44,14 +44,20 @@ public interface MyClient {
     @GET("tv/popular")
     Call<ListadoSerie> getPopularSeries(@Query("api_key") String key);
 
+    @GET("tv/airing_today")
+    Call<ListadoSerie> getLastSeries(@Query("api_key") String key);
+
+    @GET("tv/top_rated")
+    Call<ListadoSerie> getTopRatedSeries(@Query("api_key") String key);
+
+    @GET("tv/on_the_air")
+    Call<ListadoSerie> getOnAirSeries(@Query("api_key") String key);
+
     @GET("tv/{tv_id}/videos")
     Call<ListadoTrailerSerie> getTrailersSeries(@Path("id") int tv_id, @Query("api_key") String key);
 
     @GET("genre/tv/list")
     Call<GenerosSeries> getGenerosSeries(@Query("api_key") String key);
-
-    @GET("tv/airing_today")
-    Call<ListadoSerie> getLastSeries(@Query("api_key") String key);
 
 
 
