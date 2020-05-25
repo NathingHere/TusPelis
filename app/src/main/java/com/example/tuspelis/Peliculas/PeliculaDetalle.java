@@ -12,8 +12,11 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tuspelis.MainActivity;
+import com.example.tuspelis.Peliculas.Adapters.AdapterListado;
 import com.example.tuspelis.Peliculas.Models.GenerosPeliculas;
 import com.example.tuspelis.Peliculas.Models.ListadoGenerosPeliculas;
 import com.example.tuspelis.Peliculas.Models.ListadoPeliculas;
@@ -25,6 +28,7 @@ import com.example.tuspelis.WebService.MyClient;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import okhttp3.OkHttpClient;
@@ -46,6 +50,9 @@ public class PeliculaDetalle extends AppCompatActivity {
     TextView titulo, fechaSalida, descripcion, valoraciones, generoPelicula;
     FloatingActionButton trailer;
     List<GenerosPeliculas> generosPeliculas;
+    List<Pelicula> peliculasRecomendadas;
+    private AdapterListado adapter;
+    private RecyclerView recyclerView;
 
     String trailerKey;
 
@@ -85,6 +92,14 @@ public class PeliculaDetalle extends AppCompatActivity {
         Picasso.get().load("https://image.tmdb.org/t/p/original"+pelicula.getPosterPath()).into(portada);
         Picasso.get().load("https://image.tmdb.org/t/p/original"+pelicula.getBackdropPath()).into(fondo);
 
+        peliculasRecomendadas = new ArrayList<>();
+        recyclerView = findViewById(R.id.recyclerDetalle);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        adapter = new AdapterListado(peliculasRecomendadas, this);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(adapter);
+        requestRecommended();
+
 
     }
 
@@ -114,7 +129,7 @@ public class PeliculaDetalle extends AppCompatActivity {
         });
     }
 
-    public void request() {
+    public void requestGenero() {
         HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient.Builder httpClientBuilder = new OkHttpClient.Builder().addInterceptor(loggingInterceptor);
         Retrofit retrofit = new Retrofit.Builder()
@@ -139,6 +154,31 @@ public class PeliculaDetalle extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<ListadoGenerosPeliculas> call, Throwable t) {
+
+            }
+        });
+    }
+
+    private void requestRecommended() {
+        HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY);
+        OkHttpClient.Builder httpClientBuilder = new OkHttpClient.Builder().addInterceptor(loggingInterceptor);
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(MyClient.BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(httpClientBuilder.build())
+                .build();
+
+        MyClient client = retrofit.create(MyClient.class);
+        Call<ListadoPeliculas> call = client.getRecommendedMovies(pelicula.getId(), MainActivity.KEY);
+        call.enqueue(new Callback<ListadoPeliculas>() {
+            @Override
+            public void onResponse(Call<ListadoPeliculas> call, Response<ListadoPeliculas> response) {
+                peliculasRecomendadas = response.body().getResults();
+                adapter.setLista(peliculasRecomendadas);
+            }
+
+            @Override
+            public void onFailure(Call<ListadoPeliculas> call, Throwable t) {
 
             }
         });

@@ -38,6 +38,9 @@ public interface MyClient {
     @GET("genre/movie/list")
     Call<ListadoGenerosPeliculas> getGenerosPeliculas(@Query("api_key") String key);
 
+    @GET("movie/{movie_id}/recommendations")
+    Call<ListadoPeliculas> getRecommendedMovies(@Path("movie_id") int movieId, @Query("api_key") String key);
+
     //@GET("tv/{tv_id}")
     //Call<SeriePlus> getSerieDetals(@Path("tv_id") int tv_id, @Query("api_key") String key);
 
