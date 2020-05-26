@@ -3,6 +3,7 @@ package com.example.tuspelis.WebService;
 import com.example.tuspelis.Peliculas.Models.ListadoPeliculas;
 import com.example.tuspelis.Peliculas.Models.ListadoTrailerPelicula;
 import com.example.tuspelis.Peliculas.Models.PeliculaExtended;
+import com.example.tuspelis.Series.Models.Detalles_Serie;
 import com.example.tuspelis.Series.Models.ListadoSerie;
 import com.example.tuspelis.Series.Models.GenerosSeries;
 import com.example.tuspelis.Series.Models.ListadoTrailerSerie;
@@ -37,6 +38,9 @@ public interface MyClient {
     @GET("movie/{movie_id}/recommendations")
     Call<ListadoPeliculas> getRecommendedMovies(@Path("movie_id") int movieId, @Query("api_key") String key);
 
+    @GET("tv/{tv_id}")
+    Call<Detalles_Serie> getSerieDetails(@Path("tv_id") int tv_id, @Query("api_key") String key);
+
     @GET("tv/popular")
     Call<ListadoSerie> getPopularSeries(@Query("api_key") String key);
 
@@ -52,8 +56,9 @@ public interface MyClient {
     @GET("tv/{id}/videos")
     Call<ListadoTrailerSerie> getTrailersSeries(@Path("id") int tv_id, @Query("api_key") String key);
 
-    @GET("genre/tv/list")
-    Call<GenerosSeries> getGenerosSeries(@Query("api_key") String key);
+    @GET("tv/{tv_id}/recommendations")
+    Call<ListadoSerie> getRecommendedSeries(@Path("tv_id") int tv_id, @Query("api_key") String key);
+
 
 
 

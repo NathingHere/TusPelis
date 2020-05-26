@@ -11,16 +11,23 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tuspelis.MainActivity;
+import com.example.tuspelis.Peliculas.Adapters.AdapterListado;
 import com.example.tuspelis.R;
+import com.example.tuspelis.Series.Adapters.Adapter_Series;
+import com.example.tuspelis.Series.Models.Detalles_Serie;
 import com.example.tuspelis.Series.Models.GenerosSeries;
+import com.example.tuspelis.Series.Models.ListadoSerie;
 import com.example.tuspelis.Series.Models.ListadoTrailerSerie;
 import com.example.tuspelis.Series.Models.Serie;
 import com.example.tuspelis.WebService.MyClient;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import okhttp3.OkHttpClient;
@@ -34,14 +41,14 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class SerieDetalle extends AppCompatActivity {
 
     private Serie serie;
-
-    private Context context;
-
-    private String genero, trailerkey;
+    private String trailerkey, genero;
     private ImageView portada, fondo;
     private TextView titulo, fecha_estreno, descripcion, valoracion, generoserie;
     private FloatingActionButton trailer;
+    private Adapter_Series adapter;
+    private RecyclerView recyclerView;
     private List<GenerosSeries> generosSeries;
+    private List<Serie> seriesRecomendadas;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -76,7 +83,16 @@ public class SerieDetalle extends AppCompatActivity {
                 requestTrailer();
             }
         });
-        
+
+        requestDetails();
+
+        seriesRecomendadas = new ArrayList<>();
+        recyclerView = findViewById(R.id.recyclerDetalle);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        adapter = new Adapter_Series(seriesRecomendadas, this);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(adapter);
+        requestRecommended();
     }
     
     private void requestTrailer(){
@@ -100,6 +116,56 @@ public class SerieDetalle extends AppCompatActivity {
             @Override
             public void onFailure(Call<ListadoTrailerSerie> call, Throwable t) {
                 Toast.makeText(SerieDetalle.this, "FALLO EL TRAILER", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void requestDetails(){
+        HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY);
+        OkHttpClient.Builder httpClientBuilder = new OkHttpClient.Builder().addInterceptor(loggingInterceptor);
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(MyClient.BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(httpClientBuilder.build())
+                .build();
+
+        MyClient client = retrofit.create(MyClient.class);
+        Call<Detalles_Serie> call = client.getSerieDetails(serie.getId(), MainActivity.KEY);
+        call.enqueue(new Callback<Detalles_Serie>() {
+            @Override
+            public void onResponse(Call<Detalles_Serie> call, Response<Detalles_Serie> response) {
+                generosSeries = response.body().getGenres();
+                generoserie.setText(generosSeries.get(0).getName());
+            }
+
+            @Override
+            public void onFailure(Call<Detalles_Serie> call, Throwable t) {
+
+            }
+        });
+    }
+
+    private void requestRecommended(){
+        HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY);
+        OkHttpClient.Builder httpClientBuilder = new OkHttpClient.Builder().addInterceptor(loggingInterceptor);
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(MyClient.BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(httpClientBuilder.build())
+                .build();
+
+        MyClient client = retrofit.create(MyClient.class);
+        Call<ListadoSerie> call = client.getRecommendedSeries(serie.getId(), MainActivity.KEY);
+        call.enqueue(new Callback<ListadoSerie>() {
+            @Override
+            public void onResponse(Call<ListadoSerie> call, Response<ListadoSerie> response) {
+                seriesRecomendadas = response.body().getResults();
+                adapter.setLista(seriesRecomendadas);
+            }
+
+            @Override
+            public void onFailure(Call<ListadoSerie> call, Throwable t) {
+
             }
         });
     }
