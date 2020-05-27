@@ -81,7 +81,9 @@
             android:layout_marginEnd="20dp"
             android:layout_weight="1"
             android:fontFamily="@font/dosis_semibold"
-            android:text="Añadir a Favoritos" />
+            android:text="Añadir a Favoritos"
+            android:backgroundTint="@color/botones"
+            android:textColor="#ffffff"/>
 
         <Button
             android:id="@+id/btnDetalleComprar"
@@ -91,7 +93,9 @@
             android:layout_marginEnd="20dp"
             android:layout_weight="1"
             android:fontFamily="@font/dosis_semibold"
-            android:text="Watch Later" />
+            android:text="Watch Later"
+            android:backgroundTint="@color/background"
+            android:textColor="#ffffff"/>
     </LinearLayout>
 
     <LinearLayout
@@ -128,7 +132,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Ver Trailer" />
+                android:fontFamily="@font/dosis_semibold"
+                android:text="Ver Trailer"
+                android:textAlignment="center" />
         </LinearLayout>
 
         <LinearLayout
@@ -154,7 +160,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Fantástico" />
+                android:fontFamily="@font/dosis_semibold"
+                android:text="Fantástico"
+                android:textAlignment="center" />
         </LinearLayout>
 
         <LinearLayout
@@ -180,7 +188,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="94%" />
+                android:fontFamily="@font/dosis_semibold"
+                android:text="94%"
+                android:textAlignment="center" />
         </LinearLayout>
 
         <LinearLayout
@@ -206,6 +216,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:fontFamily="@font/dosis_semibold"
+                android:textAlignment="center"
                 tools:text="Ver Pelicula" />
         </LinearLayout>
 
@@ -244,6 +256,7 @@
         android:id="@+id/recyclerDetalle"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="16dp"
         android:layout_marginBottom="50dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"

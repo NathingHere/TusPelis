@@ -84,9 +84,7 @@ public class PeliculaDetalle extends AppCompatActivity {
         progressBar.setVisibility(View.VISIBLE);
         requestDetalles();
 
-        //Cargar Imagenes
-        Picasso.get().load("https://image.tmdb.org/t/p/original"+pelicula.getPosterPath()).into(portada);
-        Picasso.get().load("https://image.tmdb.org/t/p/original"+pelicula.getBackdropPath()).into(fondo);
+
 
         //Adapter
         peliculasRecomendadas = new ArrayList<>();
@@ -142,6 +140,10 @@ public class PeliculaDetalle extends AppCompatActivity {
             public void onResponse(Call<ListadoPeliculas> call, Response<ListadoPeliculas> response) {
                 peliculasRecomendadas = response.body().getResults();
                 adapter.setLista(peliculasRecomendadas);
+                //Cargar Imagenes
+                Picasso.get().load("https://image.tmdb.org/t/p/original"+pelicula.getPosterPath()).into(portada);
+                Picasso.get().load("https://image.tmdb.org/t/p/original"+pelicula.getBackdropPath()).into(fondo);
+                progressBar.setVisibility(View.GONE);
             }
 
             @Override

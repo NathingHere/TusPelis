@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -50,6 +51,7 @@ public class SerieDetalle extends AppCompatActivity {
     private RecyclerView recyclerView;
     private List<GenerosSeries> generosSeries;
     private List<Serie> seriesRecomendadas;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -77,9 +79,8 @@ public class SerieDetalle extends AppCompatActivity {
 
         portada = findViewById(R.id.ivDetalleMiniatura);
         fondo = findViewById(R.id.ivDetalleFondoPortada);
+        progressBar.setVisibility(View.VISIBLE);
 
-        Picasso.get().load("https://image.tmdb.org/t/p/original"+serie.getPoster_path()).into(portada);
-        Picasso.get().load("https://image.tmdb.org/t/p/original"+serie.getBackdrop_path()).into(fondo);
         
         trailer.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -124,6 +125,7 @@ public class SerieDetalle extends AppCompatActivity {
             public void onResponse(Call<ListadoTrailerSerie> call, Response<ListadoTrailerSerie> response) {
                 trailerkey = response.body().getTrailerResult().get(0).getKey();
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.youtube.com/watch?v="+ trailerkey)));
+
             }
 
             @Override
@@ -149,6 +151,9 @@ public class SerieDetalle extends AppCompatActivity {
             public void onResponse(Call<Detalles_Serie> call, Response<Detalles_Serie> response) {
                 generosSeries = response.body().getGenres();
                 generoserie.setText(generosSeries.get(0).getName());
+                Picasso.get().load("https://image.tmdb.org/t/p/original"+serie.getPoster_path()).into(portada);
+                Picasso.get().load("https://image.tmdb.org/t/p/original"+serie.getBackdrop_path()).into(fondo);
+                progressBar.setVisibility(View.GONE);
             }
 
             @Override
