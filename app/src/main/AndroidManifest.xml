@@ -27,6 +27,7 @@
         <activity android:name=".Favoritos.FavoritosMain" />
         <activity android:name=".Peliculas.PeliculaDetalle" />
         <activity android:name=".Series.SerieDetalle" />
+        <activity android:name=".Series.Series_Seasons" />
 
         <meta-data
             android:name="preloaded_fonts"

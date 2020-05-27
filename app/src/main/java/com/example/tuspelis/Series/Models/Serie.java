@@ -37,6 +37,8 @@ public class Serie implements Parcelable {
     private String overview;
     @SerializedName("poster_path")
     private String poster_path;
+    @SerializedName("seasons")
+    private List<Seasons> seasons;
 
 
     protected Serie(Parcel in) {
@@ -52,6 +54,7 @@ public class Serie implements Parcelable {
         vote_average = in.readDouble();
         overview = in.readString();
         poster_path = in.readString();
+        seasons = in.createTypedArrayList(Seasons.CREATOR);
     }
 
     @Override
@@ -68,6 +71,7 @@ public class Serie implements Parcelable {
         dest.writeDouble(vote_average);
         dest.writeString(overview);
         dest.writeString(poster_path);
+        dest.writeTypedList(seasons);
     }
 
     @Override
@@ -189,5 +193,13 @@ public class Serie implements Parcelable {
 
     public void setPoster_path(String poster_path) {
         this.poster_path = poster_path;
+    }
+
+    public List<Seasons> getSeasons() {
+        return seasons;
+    }
+
+    public void setSeasons(List<Seasons> seasons) {
+        this.seasons = seasons;
     }
 }

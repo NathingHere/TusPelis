@@ -11,14 +11,18 @@ public class Detalles_Serie implements Parcelable {
 
     @SerializedName("genres")
     private List<GenerosSeries> genres;
+    @SerializedName("seasons")
+    private List<Seasons> seasons;
 
     protected Detalles_Serie(Parcel in) {
         genres = in.createTypedArrayList(GenerosSeries.CREATOR);
+        seasons = in.createTypedArrayList(Seasons.CREATOR);
     }
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeTypedList(genres);
+        dest.writeTypedList(seasons);
     }
 
     @Override
@@ -44,5 +48,13 @@ public class Detalles_Serie implements Parcelable {
 
     public void setGenres(List<GenerosSeries> genres) {
         this.genres = genres;
+    }
+
+    public List<Seasons> getSeasons() {
+        return seasons;
+    }
+
+    public void setSeasons(List<Seasons> seasons) {
+        this.seasons = seasons;
     }
 }
