@@ -1,11 +1,11 @@
 package com.example.tuspelis.Peliculas;
 
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -13,8 +13,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.tuspelis.Peliculas.Adapters.AdapterRecomendadoPeliculas;
+import com.example.tuspelis.Series.Adapters.AdapterRecomendadoSeries;
 import com.example.tuspelis.MainActivity;
-import com.example.tuspelis.Peliculas.Adapters.AdapterListado;
 import com.example.tuspelis.Peliculas.Models.GenerosPeliculas;
 import com.example.tuspelis.Peliculas.Models.ListadoPeliculas;
 import com.example.tuspelis.Peliculas.Models.ListadoTrailerPelicula;
@@ -43,9 +44,10 @@ public class PeliculaDetalle extends AppCompatActivity {
     private TextView titulo, fechaSalida, descripcion, valoraciones, generoPelicula;
     private FloatingActionButton trailer;
     private List<Pelicula> peliculasRecomendadas;
-    private AdapterListado adapter;
+    private AdapterRecomendadoPeliculas adapter;
     private RecyclerView recyclerView;
     private List<GenerosPeliculas> generosPeliculas;
+    private ProgressBar progressBar;
 
     String trailerKey;
 
@@ -57,6 +59,7 @@ public class PeliculaDetalle extends AppCompatActivity {
         Intent intent = getIntent();
         pelicula = intent.getParcelableExtra("data");
 
+        progressBar = findViewById(R.id.progressBarDetalle);
         generoPelicula = findViewById(R.id.txtDetalleGenero);
         trailer = findViewById(R.id.btnDetalleTrailer);
         titulo = findViewById(R.id.txtDetallleTitulo);
@@ -78,6 +81,7 @@ public class PeliculaDetalle extends AppCompatActivity {
             }
         });
 
+        progressBar.setVisibility(View.VISIBLE);
         requestDetalles();
 
         //Cargar Imagenes
@@ -88,7 +92,7 @@ public class PeliculaDetalle extends AppCompatActivity {
         peliculasRecomendadas = new ArrayList<>();
         recyclerView = findViewById(R.id.recyclerDetalle);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false);
-        adapter = new AdapterListado(peliculasRecomendadas, this);
+        adapter = new AdapterRecomendadoPeliculas(peliculasRecomendadas, this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
         requestRecommended();

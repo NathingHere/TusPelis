@@ -1,11 +1,11 @@
 package com.example.tuspelis.Series;
 
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,10 +15,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tuspelis.MainActivity;
-import com.example.tuspelis.Peliculas.Adapters.AdapterListado;
-import com.example.tuspelis.Peliculas.Adapters.AdapterRecomendado;
+import com.example.tuspelis.Series.Adapters.AdapterRecomendadoSeries;
 import com.example.tuspelis.R;
-import com.example.tuspelis.Series.Adapters.Adapter_Series;
 import com.example.tuspelis.Series.Models.Detalles_Serie;
 import com.example.tuspelis.Series.Models.GenerosSeries;
 import com.example.tuspelis.Series.Models.ListadoSerie;
@@ -46,10 +44,11 @@ public class SerieDetalle extends AppCompatActivity {
     private ImageView portada, fondo;
     private TextView titulo, fecha_estreno, descripcion, valoracion, generoserie;
     private FloatingActionButton trailer;
-    private AdapterRecomendado adapter;
+    private AdapterRecomendadoSeries adapter;
     private RecyclerView recyclerView;
     private List<GenerosSeries> generosSeries;
     private List<Serie> seriesRecomendadas;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -60,6 +59,7 @@ public class SerieDetalle extends AppCompatActivity {
 
         serie = intent.getParcelableExtra("data");
 
+        progressBar = findViewById(R.id.progressBarDetalle);
         trailer = findViewById(R.id.btnDetalleTrailer);
         titulo = findViewById(R.id.txtDetallleTitulo);
         titulo.setText(serie.getName());
@@ -74,7 +74,8 @@ public class SerieDetalle extends AppCompatActivity {
 
         portada = findViewById(R.id.ivDetalleMiniatura);
         fondo = findViewById(R.id.ivDetalleFondoPortada);
-
+        progressBar.setVisibility(View.VISIBLE);
+        requestDetails();
         Picasso.get().load("https://image.tmdb.org/t/p/original"+serie.getPoster_path()).into(portada);
         Picasso.get().load("https://image.tmdb.org/t/p/original"+serie.getBackdrop_path()).into(fondo);
         
@@ -85,12 +86,12 @@ public class SerieDetalle extends AppCompatActivity {
             }
         });
 
-        requestDetails();
+
 
         seriesRecomendadas = new ArrayList<>();
         recyclerView = findViewById(R.id.recyclerDetalle);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-        adapter = new AdapterRecomendado(seriesRecomendadas, this);
+        adapter = new AdapterRecomendadoSeries(seriesRecomendadas, this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
         requestRecommended();
@@ -137,6 +138,7 @@ public class SerieDetalle extends AppCompatActivity {
             public void onResponse(Call<Detalles_Serie> call, Response<Detalles_Serie> response) {
                 generosSeries = response.body().getGenres();
                 generoserie.setText(generosSeries.get(0).getName());
+                progressBar.setVisibility(View.GONE);
             }
 
             @Override
