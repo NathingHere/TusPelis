@@ -39,15 +39,18 @@ public class Series_Seasons extends AppCompatActivity {
     private Serie serie;
     private Adapter_Series_Seasons adapter;
     private List<Seasons> listado_seasons;
-
+    private int id_tv;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragments);
 
-        Intent intent = getIntent();
+        Bundle bundle = getIntent().getExtras();
+        if(bundle != null && bundle.containsKey("data_season")){
+            serie = bundle.getParcelable("data_season");
+            id_tv = serie.getId();
+        }
 
-        season = intent.getParcelableExtra("data_season");
         textView = findViewById(R.id.txtPrueba);
         recyclerView = findViewById(R.id.recyclerview);
         listado_seasons = new ArrayList<>();
@@ -69,7 +72,7 @@ public class Series_Seasons extends AppCompatActivity {
                 .build();
 
         MyClient client = retrofit.create(MyClient.class);
-        Call<Detalles_Serie> call = client.getSerieDetails(serie.getId(), MainActivity.KEY);
+        Call<Detalles_Serie> call = client.getSerieDetails(id_tv, MainActivity.KEY);
         call.enqueue(new Callback<Detalles_Serie>() {
             @Override
             public void onResponse(Call<Detalles_Serie> call, Response<Detalles_Serie> response) {

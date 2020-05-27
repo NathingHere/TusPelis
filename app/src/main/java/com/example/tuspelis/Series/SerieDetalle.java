@@ -15,9 +15,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tuspelis.MainActivity;
-import com.example.tuspelis.Peliculas.Adapters.AdapterListado;
-import com.example.tuspelis.Peliculas.Adapters.AdapterRecomendado;
 import com.example.tuspelis.R;
+import com.example.tuspelis.Series.Adapters.AdapterRecomendadoSeries;
 import com.example.tuspelis.Series.Adapters.Adapter_Series;
 import com.example.tuspelis.Series.Models.Detalles_Serie;
 import com.example.tuspelis.Series.Models.GenerosSeries;
@@ -43,12 +42,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class SerieDetalle extends AppCompatActivity {
 
     private Serie serie;
-    private Seasons season;
     private String trailerkey, genero;
     private ImageView portada, fondo;
     private TextView titulo, fecha_estreno, descripcion, valoracion, generoserie;
     private FloatingActionButton trailer, detalle;
-    private AdapterRecomendado adapter;
+    private AdapterRecomendadoSeries adapter;
     private RecyclerView recyclerView;
     private List<GenerosSeries> generosSeries;
     private List<Serie> seriesRecomendadas;
@@ -92,7 +90,7 @@ public class SerieDetalle extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(SerieDetalle.this, Series_Seasons.class);
-                intent.putExtra("data_season", season);
+                intent.putExtra("data_season", serie);
                 startActivity(intent);
             }
         });
@@ -102,7 +100,7 @@ public class SerieDetalle extends AppCompatActivity {
         seriesRecomendadas = new ArrayList<>();
         recyclerView = findViewById(R.id.recyclerDetalle);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-        adapter = new AdapterRecomendado(seriesRecomendadas, this);
+        adapter = new AdapterRecomendadoSeries(seriesRecomendadas, this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
         requestRecommended();
