@@ -44,7 +44,7 @@ public class SerieDetalle extends AppCompatActivity {
     private Serie serie;
     private String trailerkey, genero;
     private ImageView portada, fondo;
-    private TextView titulo, fecha_estreno, descripcion, valoracion, generoserie;
+    private TextView titulo, fecha_estreno, descripcion, valoracion, generoserie, temporadas;
     private FloatingActionButton trailer, detalle;
     private AdapterRecomendadoSeries adapter;
     private RecyclerView recyclerView;
@@ -61,6 +61,8 @@ public class SerieDetalle extends AppCompatActivity {
         serie = intent.getParcelableExtra("data");
 
         trailer = findViewById(R.id.btnDetalleTrailer);
+        temporadas = findViewById(R.id.txtDetalleVerPeli);
+        temporadas.setText("Temporadas");
         detalle = findViewById(R.id.btnDetalleVerPelicula);
         titulo = findViewById(R.id.txtDetallleTitulo);
         titulo.setText(serie.getName());

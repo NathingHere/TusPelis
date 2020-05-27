@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -48,9 +49,8 @@ public class Adapter_Series_Seasons extends RecyclerView.Adapter<Adapter_Series_
         holder.layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, Series_Seasons.class);
-                intent.putExtra("data_season", season);
-                context.startActivity(intent);
+                Toast.makeText(context, "Episodios: " + season.getEpisode_count(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Fecha de lanzamiento: " + season.getAir_date(), Toast.LENGTH_SHORT).show();
             }
         });
     }
