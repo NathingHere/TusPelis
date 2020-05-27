@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tuspelis.MainActivity;
 import com.example.tuspelis.Peliculas.Adapters.AdapterListado;
+import com.example.tuspelis.Peliculas.Adapters.AdapterRecomendado;
 import com.example.tuspelis.R;
 import com.example.tuspelis.Series.Adapters.Adapter_Series;
 import com.example.tuspelis.Series.Models.Detalles_Serie;
@@ -45,7 +46,7 @@ public class SerieDetalle extends AppCompatActivity {
     private ImageView portada, fondo;
     private TextView titulo, fecha_estreno, descripcion, valoracion, generoserie;
     private FloatingActionButton trailer;
-    private Adapter_Series adapter;
+    private AdapterRecomendado adapter;
     private RecyclerView recyclerView;
     private List<GenerosSeries> generosSeries;
     private List<Serie> seriesRecomendadas;
@@ -89,7 +90,7 @@ public class SerieDetalle extends AppCompatActivity {
         seriesRecomendadas = new ArrayList<>();
         recyclerView = findViewById(R.id.recyclerDetalle);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-        adapter = new Adapter_Series(seriesRecomendadas, this);
+        adapter = new AdapterRecomendado(seriesRecomendadas, this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
         requestRecommended();
