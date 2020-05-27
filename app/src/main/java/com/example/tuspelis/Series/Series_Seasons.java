@@ -36,6 +36,7 @@ public class Series_Seasons extends AppCompatActivity {
     private TextView textView;
     private RecyclerView recyclerView;
     private Seasons season;
+    private Serie serie;
     private Adapter_Series_Seasons adapter;
     private List<Seasons> listado_seasons;
 
@@ -68,7 +69,7 @@ public class Series_Seasons extends AppCompatActivity {
                 .build();
 
         MyClient client = retrofit.create(MyClient.class);
-        Call<Detalles_Serie> call = client.getSerieDetails(season.getId(), MainActivity.KEY);
+        Call<Detalles_Serie> call = client.getSerieDetails(serie.getId(), MainActivity.KEY);
         call.enqueue(new Callback<Detalles_Serie>() {
             @Override
             public void onResponse(Call<Detalles_Serie> call, Response<Detalles_Serie> response) {
