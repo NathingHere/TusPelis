@@ -88,7 +88,7 @@ public class SerieDetalle extends AppCompatActivity {
 
         seriesRecomendadas = new ArrayList<>();
         recyclerView = findViewById(R.id.recyclerDetalle);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         adapter = new Adapter_Series(seriesRecomendadas, this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);

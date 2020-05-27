@@ -87,7 +87,7 @@ public class PeliculaDetalle extends AppCompatActivity {
         //Adapter
         peliculasRecomendadas = new ArrayList<>();
         recyclerView = findViewById(R.id.recyclerDetalle);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false);
         adapter = new AdapterListado(peliculasRecomendadas, this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
