@@ -22,6 +22,7 @@ import com.example.tuspelis.Peliculas.Models.ListadoTrailerPelicula;
 import com.example.tuspelis.Peliculas.Models.Pelicula;
 import com.example.tuspelis.Peliculas.Models.PeliculaExtended;
 import com.example.tuspelis.R;
+import com.example.tuspelis.Sesion.GuestSesion;
 import com.example.tuspelis.WebService.MyClient;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.squareup.picasso.Picasso;
@@ -48,6 +49,7 @@ public class PeliculaDetalle extends AppCompatActivity {
     private RecyclerView recyclerView;
     private List<GenerosPeliculas> generosPeliculas;
     private ProgressBar progressBar;
+    private String guestID;
 
     String trailerKey;
 
@@ -83,6 +85,7 @@ public class PeliculaDetalle extends AppCompatActivity {
 
         progressBar.setVisibility(View.VISIBLE);
         requestDetalles();
+        requestGuest();
 
 
 
@@ -177,5 +180,30 @@ public class PeliculaDetalle extends AppCompatActivity {
             }
         });
     }
+
+    private void requestGuest() {
+        HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY);
+        OkHttpClient.Builder httpClientBuilder = new OkHttpClient.Builder().addInterceptor(loggingInterceptor);
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(MyClient.BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(httpClientBuilder.build())
+                .build();
+
+        MyClient client = retrofit.create(MyClient.class);
+        Call<GuestSesion> call = client.getGuestToken(MainActivity.KEY);
+        call.enqueue(new Callback<GuestSesion>() {
+            @Override
+            public void onResponse(Call<GuestSesion> call, Response<GuestSesion> response) {
+                guestID = response.body().getGuestID();
+            }
+
+            @Override
+            public void onFailure(Call<GuestSesion> call, Throwable t) {
+
+            }
+        });
+    }
+
 
 }

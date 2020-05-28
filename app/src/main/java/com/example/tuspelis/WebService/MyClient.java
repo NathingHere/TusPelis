@@ -7,6 +7,7 @@ import com.example.tuspelis.Series.Models.Detalles_Serie;
 import com.example.tuspelis.Series.Models.ListadoSerie;
 import com.example.tuspelis.Series.Models.GenerosSeries;
 import com.example.tuspelis.Series.Models.ListadoTrailerSerie;
+import com.example.tuspelis.Sesion.GuestSesion;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -16,6 +17,9 @@ import retrofit2.http.Query;
 public interface MyClient {
 
     public static final String BASE_URL = "https://api.themoviedb.org/3/";
+
+    @GET("authentication/guest_session/new")
+    Call<GuestSesion> getGuestToken(@Query("api_key") String key);
 
     @GET("movie/{movie_id}")
     Call<PeliculaExtended> getMovieDetails(@Path("movie_id") int movieId, @Query("api_key") String key);
