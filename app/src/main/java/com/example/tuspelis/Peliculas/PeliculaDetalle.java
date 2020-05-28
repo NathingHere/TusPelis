@@ -3,11 +3,16 @@ package com.example.tuspelis.Peliculas;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -22,6 +27,8 @@ import com.example.tuspelis.Peliculas.Models.ListadoTrailerPelicula;
 import com.example.tuspelis.Peliculas.Models.Pelicula;
 import com.example.tuspelis.Peliculas.Models.PeliculaExtended;
 import com.example.tuspelis.R;
+import com.example.tuspelis.Series.SerieDetalle;
+import com.example.tuspelis.Series.SeriesMain;
 import com.example.tuspelis.Sesion.GuestSesion;
 import com.example.tuspelis.WebService.MyClient;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -44,6 +51,7 @@ public class PeliculaDetalle extends AppCompatActivity {
     private ImageView portada, fondo;
     private TextView titulo, fechaSalida, descripcion, valoraciones, generoPelicula;
     private FloatingActionButton trailer;
+    private LinearLayout desuso;
     private List<Pelicula> peliculasRecomendadas;
     private AdapterRecomendadoPeliculas adapter;
     private RecyclerView recyclerView;
@@ -72,7 +80,8 @@ public class PeliculaDetalle extends AppCompatActivity {
         descripcion.setText(pelicula.getOverview());
         valoraciones = findViewById(R.id.txtDetalleValoracion);
         valoraciones.setText(String.valueOf(pelicula.getVoteAverage()));
-
+        desuso = findViewById(R.id.desusopeli);
+        desuso.setVisibility(View.GONE);
         portada = findViewById(R.id.ivDetalleMiniatura);
         fondo = findViewById(R.id.ivDetalleFondoPortada);
 
@@ -205,5 +214,29 @@ public class PeliculaDetalle extends AppCompatActivity {
         });
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_detalle,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.menu_home:
+                Intent i = new Intent(PeliculaDetalle.this,MainActivity.class);
+                startActivity(i);
+                finish();
+                return true;
+            case R.id.menu_lista:
+                Intent in = new Intent(PeliculaDetalle.this, PeliculasMain.class);
+                startActivity(in);
+                finish();
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 
 }

@@ -28,6 +28,7 @@
         <activity android:name=".Peliculas.PeliculaDetalle" />
         <activity android:name=".Series.SerieDetalle" />
         <activity android:name=".Series.Series_Seasons" />
+        <activity android:name=".SobreNosotros" />
 
         <meta-data
             android:name="preloaded_fonts"

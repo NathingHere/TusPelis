@@ -4,12 +4,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -25,6 +29,7 @@ import com.example.tuspelis.Series.Models.ListadoSerie;
 import com.example.tuspelis.Series.Models.ListadoTrailerSerie;
 import com.example.tuspelis.Series.Models.Seasons;
 import com.example.tuspelis.Series.Models.Serie;
+import com.example.tuspelis.SobreNosotros;
 import com.example.tuspelis.WebService.MyClient;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.squareup.picasso.Picasso;
@@ -79,6 +84,8 @@ public class SerieDetalle extends AppCompatActivity {
 
         portada = findViewById(R.id.ivDetalleMiniatura);
         fondo = findViewById(R.id.ivDetalleFondoPortada);
+        progressBar = findViewById(R.id.progressBarDetalle);
+
         progressBar.setVisibility(View.VISIBLE);
 
         
@@ -186,5 +193,30 @@ public class SerieDetalle extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_detalle,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.menu_home:
+                Intent i = new Intent(SerieDetalle.this,MainActivity.class);
+                startActivity(i);
+                finish();
+                return true;
+            case R.id.menu_lista:
+                Intent in = new Intent(SerieDetalle.this,SeriesMain.class);
+                startActivity(in);
+                finish();
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

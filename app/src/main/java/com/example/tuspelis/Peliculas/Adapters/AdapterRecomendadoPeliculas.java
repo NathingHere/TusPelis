@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tuspelis.Peliculas.Models.Pelicula;
+import com.example.tuspelis.Peliculas.PeliculaDetalle;
 import com.example.tuspelis.R;
 import com.example.tuspelis.Series.Models.Serie;
 import com.example.tuspelis.Series.SerieDetalle;
@@ -44,7 +45,7 @@ public class AdapterRecomendadoPeliculas extends RecyclerView.Adapter<AdapterRec
         holder.ivPortada.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, SerieDetalle.class);
+                Intent intent = new Intent(context, PeliculaDetalle.class);
                 intent.putExtra("data", pelicula);
                 context.startActivity(intent);
             }

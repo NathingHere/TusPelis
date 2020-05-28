@@ -117,6 +117,8 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()){
             case R.id.menu_sobreNosotros:
                 Toast.makeText(this, "Pinchaste en 'Sobre Nosotros'", Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(MainActivity.this, SobreNosotros.class);
+                startActivity(i);
                 return true;
             case R.id.menu_config:
                 Toast.makeText(this, "Pinchaste en 'Configuración de la Cuenta", Toast.LENGTH_SHORT).show();
