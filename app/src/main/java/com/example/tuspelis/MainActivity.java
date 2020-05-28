@@ -72,8 +72,7 @@ public class MainActivity extends AppCompatActivity {
         watchLater.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(MainActivity.this, WatchLaterMain.class);
-                startActivity(i);
+                Toast.makeText(MainActivity.this, "No disponible sin registro", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -82,8 +81,7 @@ public class MainActivity extends AppCompatActivity {
         fav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(MainActivity.this, FavoritosMain.class);
-                startActivity(i);
+                Toast.makeText(MainActivity.this, "No disponible sin registro", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -92,8 +90,7 @@ public class MainActivity extends AppCompatActivity {
         votaciones.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(MainActivity.this, VotosMain.class);
-                startActivity(i);
+                Toast.makeText(MainActivity.this, "No disponible sin registro", Toast.LENGTH_SHORT).show();
             }
         });
     }
