@@ -60,7 +60,7 @@
             android:layout_gravity="center"
             android:layout_margin="10dp"
             android:fontFamily="@font/dosis_semibold"
-            android:text="Javier"
+            android:text="Javier López Jimenez"
             android:textAlignment="center"
             android:textSize="36sp" />
     </androidx.cardview.widget.CardView>
