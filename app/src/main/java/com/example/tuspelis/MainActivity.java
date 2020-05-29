@@ -15,12 +15,19 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.tuspelis.Buscador.BuscadorMain;
+import com.example.tuspelis.Buscador.PeliculasBuscar;
 import com.example.tuspelis.Favoritos.FavoritosMain;
 import com.example.tuspelis.Peliculas.PeliculasMain;
 import com.example.tuspelis.Series.SeriesMain;
 import com.example.tuspelis.Votaciones.VotosMain;
 import com.example.tuspelis.WatchLater.WatchLaterMain;
 import com.google.android.material.tabs.TabLayout;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
     private ImageButton peliculas, series, watchLater, fav, buscador, votaciones;
@@ -67,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
 
     private void optionWatchLater(){
         watchLater.setOnClickListener(new View.OnClickListener() {
@@ -126,5 +134,25 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private List<PeliculasBuscar> pelisBuscar;
+
+    private void setupView() {
+        Object recyclerView;
+        Object adapter;
+        recyclerView = findViewById(R.id.recyclerview);
+        pelisBuscar = new ArrayList<>();
+        adapter = new PeliculasBuscar(pelisBuscar, this)
+    }
+
+    private void lanzarPeticion() {
+
+        retrofit = new Retrofit.Builder()
+            .baseUrl(WebServiceClient.BASE_URL)
+            .addConverterfactory(GsonConverterFactory.create())
+            .client(httpClientBuilder.build())
+            .build();
+        WebServiceClient client = retrofit.create(WebServiceClient.class);
     }
 }

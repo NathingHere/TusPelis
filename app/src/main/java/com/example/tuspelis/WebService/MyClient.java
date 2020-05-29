@@ -1,5 +1,6 @@
 package com.example.tuspelis.WebService;
 
+import com.example.tuspelis.Buscador.ResultadoBuscar;
 import com.example.tuspelis.Peliculas.Models.ListadoPeliculas;
 import com.example.tuspelis.Peliculas.Models.ListadoTrailerPelicula;
 import com.example.tuspelis.Peliculas.Models.PeliculaExtended;
@@ -63,7 +64,8 @@ public interface MyClient {
     @GET("tv/{tv_id}/recommendations")
     Call<ListadoSerie> getRecommendedSeries(@Path("tv_id") int tv_id, @Query("api_key") String key);
 
-
+    @GET("search/movie")
+    Call<ResultadoBuscar> buscarPorPalabra(@Query("apy_key") String key, @Query("query") String buscar);
 
 
 
