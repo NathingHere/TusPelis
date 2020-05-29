@@ -85,6 +85,7 @@ public class BuscadorMain extends AppCompatActivity {
         call.enqueue(new Callback<ResultadoBuscar>() {
             @Override
             public void onResponse(Call<ResultadoBuscar> call, Response<ResultadoBuscar> response) {
+
                 buscarList = response.body().getResults();
                 adapterBuscador.setLista(buscarList);
             }

@@ -9,15 +9,9 @@ import java.util.List;
 
 public class ResultadoBuscar implements Parcelable {
 
-    int page, total_results, total_pages;
-    ArrayList<PeliculasBuscar> results;
+    private int page, total_results, total_pages;
+    private List<PeliculasBuscar> results;
 
-    public ResultadoBuscar(int page, int total_results, int total_pages, ArrayList<PeliculasBuscar> results) {
-        this.page = page;
-        this.total_results = total_results;
-        this.total_pages = total_pages;
-        this.results = results;
-    }
 
     protected ResultadoBuscar(Parcel in) {
         page = in.readInt();
@@ -75,8 +69,12 @@ public class ResultadoBuscar implements Parcelable {
         this.total_pages = total_pages;
     }
 
-    public ArrayList<PeliculasBuscar> getResults() {
+    public List<PeliculasBuscar> getResults() {
         return results;
+    }
+
+    public void setResults(List<PeliculasBuscar> results) {
+        this.results = results;
     }
 
     public void setResults(ArrayList<PeliculasBuscar> results) {
