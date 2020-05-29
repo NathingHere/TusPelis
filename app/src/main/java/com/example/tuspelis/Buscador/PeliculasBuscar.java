@@ -1,13 +1,16 @@
 package com.example.tuspelis.Buscador;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.List;
 
-public class PeliculasBuscar {
+public class PeliculasBuscar implements Parcelable {
 
     String poster_path, original_language, original_title, title, overview, release_date;
     double popularity, vote_average;
     int vote_count, id;
-    boolean adult;
+    boolean adult, video;
     List<Integer> genre_ids;
 
     public PeliculasBuscar(String poster_path, String original_language, String original_title, String title, String overview, String release_date, double popularity, double vote_average, int vote_count, int id, boolean adult, List<Integer> genre_ids) {
@@ -24,6 +27,40 @@ public class PeliculasBuscar {
         this.adult = adult;
         this.genre_ids = genre_ids;
     }
+
+    public boolean isVideo() {
+        return video;
+    }
+
+    public void setVideo(boolean video) {
+        this.video = video;
+    }
+
+    protected PeliculasBuscar(Parcel in) {
+        poster_path = in.readString();
+        original_language = in.readString();
+        original_title = in.readString();
+        title = in.readString();
+        overview = in.readString();
+        release_date = in.readString();
+        popularity = in.readDouble();
+        vote_average = in.readDouble();
+        vote_count = in.readInt();
+        id = in.readInt();
+        adult = in.readByte() != 0;
+    }
+
+    public static final Creator<PeliculasBuscar> CREATOR = new Creator<PeliculasBuscar>() {
+        @Override
+        public PeliculasBuscar createFromParcel(Parcel in) {
+            return new PeliculasBuscar(in);
+        }
+
+        @Override
+        public PeliculasBuscar[] newArray(int size) {
+            return new PeliculasBuscar[size];
+        }
+    };
 
     public String getPoster_path() {
         return poster_path;
@@ -119,6 +156,26 @@ public class PeliculasBuscar {
 
     public void setGenre_ids(List<Integer> genre_ids) {
         this.genre_ids = genre_ids;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(poster_path);
+        dest.writeString(original_language);
+        dest.writeString(original_title);
+        dest.writeString(title);
+        dest.writeString(overview);
+        dest.writeString(release_date);
+        dest.writeDouble(popularity);
+        dest.writeDouble(vote_average);
+        dest.writeInt(vote_count);
+        dest.writeInt(id);
+        dest.writeByte((byte) (adult ? 1 : 0));
     }
 }
 

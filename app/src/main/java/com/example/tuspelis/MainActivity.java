@@ -135,24 +135,4 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
-    private List<PeliculasBuscar> pelisBuscar;
-
-    private void setupView() {
-        Object recyclerView;
-        Object adapter;
-        recyclerView = findViewById(R.id.recyclerview);
-        pelisBuscar = new ArrayList<>();
-        adapter = new PeliculasBuscar(pelisBuscar, this)
-    }
-
-    private void lanzarPeticion() {
-
-        retrofit = new Retrofit.Builder()
-            .baseUrl(WebServiceClient.BASE_URL)
-            .addConverterfactory(GsonConverterFactory.create())
-            .client(httpClientBuilder.build())
-            .build();
-        WebServiceClient client = retrofit.create(WebServiceClient.class);
-    }
 }
