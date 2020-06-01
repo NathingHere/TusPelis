@@ -11,6 +11,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tuspelis.MainActivity;
+import com.example.tuspelis.Peliculas.Adapters.AdapterListado;
+import com.example.tuspelis.Peliculas.Models.ListadoPeliculas;
+import com.example.tuspelis.Peliculas.Models.Pelicula;
 import com.example.tuspelis.R;
 import com.example.tuspelis.WebService.MyClient;
 import com.google.android.material.textfield.TextInputEditText;
@@ -31,8 +34,8 @@ public class BuscadorMain extends AppCompatActivity {
     private TextInputEditText txtTexto;
     private String nombre;
     private RecyclerView recyclerView;
-    private List<PeliculasBuscar> buscarList;
-    private AdapterBuscador adapterBuscador;
+    private List<Pelicula> buscarList;
+    private AdapterListado adapterBuscador;
 
 
     @Override
@@ -65,7 +68,7 @@ public class BuscadorMain extends AppCompatActivity {
         buscarList = new ArrayList<>();
         recyclerView = findViewById(R.id.recyclerbuscador);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        adapterBuscador = new AdapterBuscador(buscarList,this);
+        adapterBuscador = new AdapterListado(buscarList,this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapterBuscador);
         lanzarPeticion(nombre);
@@ -81,18 +84,17 @@ public class BuscadorMain extends AppCompatActivity {
                 .build();
 
         MyClient client = retrofit.create(MyClient.class);
-        Call<ResultadoBuscar> call = client.buscarPorPalabra(MainActivity.KEY, nombre);
-        call.enqueue(new Callback<ResultadoBuscar>() {
+        Call<ListadoPeliculas> call = client.buscarPorPalabra(MainActivity.KEY,nombre);
+        call.enqueue(new Callback<ListadoPeliculas>() {
             @Override
-            public void onResponse(Call<ResultadoBuscar> call, Response<ResultadoBuscar> response) {
-
+            public void onResponse(Call<ListadoPeliculas> call, Response<ListadoPeliculas> response) {
                 buscarList = response.body().getResults();
                 adapterBuscador.setLista(buscarList);
             }
 
             @Override
-            public void onFailure(Call<ResultadoBuscar> call, Throwable t) {
-                Toast.makeText(BuscadorMain.this, "Fallo", Toast.LENGTH_SHORT).show();
+            public void onFailure(Call<ListadoPeliculas> call, Throwable t) {
+                Toast.makeText(BuscadorMain.this, "No se reciben parametros", Toast.LENGTH_SHORT).show();
             }
         });
     }

@@ -15,19 +15,10 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.tuspelis.Buscador.BuscadorMain;
-import com.example.tuspelis.Buscador.PeliculasBuscar;
-import com.example.tuspelis.Favoritos.FavoritosMain;
+
 import com.example.tuspelis.Peliculas.PeliculasMain;
 import com.example.tuspelis.Series.SeriesMain;
-import com.example.tuspelis.Votaciones.VotosMain;
-import com.example.tuspelis.WatchLater.WatchLaterMain;
-import com.google.android.material.tabs.TabLayout;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
     private ImageButton peliculas, series, watchLater, fav, buscador, votaciones;
